@@ -1,0 +1,9 @@
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LocationComparison.resources
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\along\Documents\GitHub\BubbleSort-Clicker\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
