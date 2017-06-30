@@ -53,10 +53,7 @@ namespace WindowsFormsApplication1.LocationModels
             catch(Exception e)
             {
                 errorMessage = e.Message;
-                
                 return false;
-                
-                
             }
 
         }

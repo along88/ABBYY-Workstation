@@ -64,6 +64,7 @@
     <Compile Include="LocationModels\IModel.cs" />
     <Compile Include="LocationModels\Model.cs" />
     <Compile Include="LocationPresenter\Presenter.cs" />
+    <Compile Include="LocationView\ExportView.cs" />
     <Compile Include="LocationView\IView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

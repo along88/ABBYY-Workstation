@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1.LocationView
         string ControlNo { get; set; }
         object Grid { get; set; }
 
+        object Export { get; set; }
+        
         event EventHandler<EventArgs> onStateChanged;
 
     }

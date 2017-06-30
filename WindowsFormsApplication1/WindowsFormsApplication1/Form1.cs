@@ -37,10 +37,7 @@ namespace WindowsFormsApplication1
 
         public event EventHandler<EventArgs> onStateChanged;
 
-        private void LocationComparison_Load(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void txtControlNo_TextChanged(object sender , EventArgs e)
         {

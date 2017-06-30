@@ -69,7 +69,6 @@
             this.Controls.Add(this.dgViewSOV);
             this.Name = "LocationComparison";
             this.Text = "Location Comparison";
-            this.Load += new System.EventHandler(this.LocationComparison_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
