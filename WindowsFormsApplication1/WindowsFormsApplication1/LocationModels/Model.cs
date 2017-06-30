@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1.LocationModels
 
         public bool Connect()
         {
+            
             SqlConnection sqlconnection = new SqlConnection(connectionString);
            try
             {
