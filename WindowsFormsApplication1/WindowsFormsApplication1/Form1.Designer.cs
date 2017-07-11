@@ -31,6 +31,7 @@
             this.dgViewSOV = new System.Windows.Forms.DataGridView();
             this.txtControlNo = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
+            this.controlNumberLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,12 +59,23 @@
             this.btnExport.TabIndex = 6;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // controlNumberLabel
+            // 
+            this.controlNumberLabel.AutoSize = true;
+            this.controlNumberLabel.Location = new System.Drawing.Point(188, 15);
+            this.controlNumberLabel.Name = "controlNumberLabel";
+            this.controlNumberLabel.Size = new System.Drawing.Size(83, 13);
+            this.controlNumberLabel.TabIndex = 7;
+            this.controlNumberLabel.Text = "Control Number:";
             // 
             // LocationComparison
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 355);
+            this.Controls.Add(this.controlNumberLabel);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.txtControlNo);
             this.Controls.Add(this.dgViewSOV);
@@ -80,6 +92,7 @@
         private System.Windows.Forms.DataGridView dgViewSOV;
         private System.Windows.Forms.TextBox txtControlNo;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Label controlNumberLabel;
     }
 }
 
