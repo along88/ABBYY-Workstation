@@ -79,6 +79,7 @@
             this.Editbtn.TabIndex = 8;
             this.Editbtn.Text = "Edit";
             this.Editbtn.UseVisualStyleBackColor = true;
+            this.Editbtn.Click += new System.EventHandler(this.Editbtn_Click);
             // 
             // LocationComparison
             // 

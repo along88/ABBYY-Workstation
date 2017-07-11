@@ -56,5 +56,18 @@ namespace WindowsFormsApplication1
         {
             //call Export here
         }
+
+        private void Editbtn_Click(object sender, EventArgs e)
+        {
+
+            DataGridView editableDG = dgViewSOV;
+            Grid = editableDG;
+
+
+            //perhaps store a reference to current grid state and update the stored
+            //reference every time a change is made
+
+            //allow the grid to be exported into a locally saved Excel file
+        }
     }
 }
