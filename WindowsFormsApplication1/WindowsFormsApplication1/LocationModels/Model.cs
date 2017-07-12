@@ -42,14 +42,13 @@ namespace WindowsFormsApplication1.LocationModels
            try
             {
                 sqlconnection.Open();
-               //string sqlQuery = string.Format("SELECT * FROM Acord140_Critical inner join PremisesInformation on Acord140_Critical.Acord140_CriticalID = PremisesInformation.Acord140_CriticalID WHERE ControlNoIMS = '{0}'", controlNo);
+                //string sqlQuery = string.Format("SELECT * FROM Acord140_Critical inner join PremisesInformation on Acord140_Critical.Acord140_CriticalID = PremisesInformation.Acord140_CriticalID WHERE ControlNoIMS = '{0}'", controlNo);
                 //command = new SqlCommand(sqlQuery, sqlconnection);
                 //command.ExecuteNonQuery();
                 //command.Dispose();
                 //grid = ReturnData(sqlQuery);
                 sqlconnection.Close();
                 return true;
-
             }
             catch(Exception e)
             {

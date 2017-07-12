@@ -33,6 +33,12 @@ namespace WindowsFormsApplication1
             set { dgViewSOV.DataSource = value; }
         }
 
+        public Panel EditPanel
+        {
+            get;
+            set;
+        }
+
         
 
         public event EventHandler<EventArgs> onStateChanged;
@@ -59,9 +65,29 @@ namespace WindowsFormsApplication1
 
         private void Editbtn_Click(object sender, EventArgs e)
         {
-
-            DataGridView editableDG = dgViewSOV;
-            Grid = editableDG;
+            
+            if (EditPanel == null)
+            {
+                EditPanel = new Panel();
+                DataGridView editableDG = dgViewSOV;
+                this.Controls.Add(EditPanel);
+                EditPanel.Size = this.ClientSize;
+                EditPanel.Visible = true;
+                EditPanel.BringToFront();
+                EditPanel.Controls.Add(this.dgViewSOV);
+                this.Editbtn.Text = "Back";
+                EditPanel.Controls.Add(this.Editbtn);
+                
+            }
+            else if (Editbtn.Text.Equals("Back"))
+            {
+                this.Editbtn.Text = "Edit";
+                this.Controls.Remove(EditPanel);
+                EditPanel = null;
+                this.Controls.Add(Editbtn);
+                this.Controls.Add(dgViewSOV);
+                this.BringToFront();
+            }
 
 
             //perhaps store a reference to current grid state and update the stored

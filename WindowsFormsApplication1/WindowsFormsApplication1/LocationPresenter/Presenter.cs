@@ -51,24 +51,7 @@ namespace WindowsFormsApplication1.LocationPresenter
             }
         }
 
-        private void Editbtn_Clicked(object sender, EventArgs e)
-        {
-            //update the model grid with the users current grid view
-            model.Grid = view.Grid;
-
-            
-            //perhaps store a reference to current grid state and update the stored
-            //reference every time a change is made
-
-            //allow the grid to be exported into a locally saved Excel file
-
-
-
-
-            
-
-            
-        }
+        
 
         
 
