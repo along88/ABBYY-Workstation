@@ -11,9 +11,9 @@ using WindowsFormsApplication1.LocationView;
 
 namespace WindowsFormsApplication1
 {
-    public partial class LocationComparison : Form, IView
+    public partial class SharperWorkstation : Form, IView
     {
-        public LocationComparison()
+        public SharperWorkstation()
         {
             InitializeComponent();
         }
@@ -24,8 +24,6 @@ namespace WindowsFormsApplication1
 
             set { txtControlNo.Text = value; }
         }
-
-       
 
         public object Grid
         {
@@ -39,13 +37,7 @@ namespace WindowsFormsApplication1
             set;
         }
 
-        
-
         public event EventHandler<EventArgs> onStateChanged;
-
-    
-
-        
 
         private void txtControlNo_TextChanged(object sender , EventArgs e)
         {
@@ -60,11 +52,6 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            //call Export here
-        }
-
         private void Editbtn_Click(object sender, EventArgs e)
         {
             
@@ -72,20 +59,22 @@ namespace WindowsFormsApplication1
             {
                 EditPanel = new Panel();
                 DataGridView editableDG = dgViewSOV;
+                
                 editableDG.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-                editableDG.
                 editableDG.MultiSelect = true;
                 editableDG.AllowUserToDeleteRows = true;
                 editableDG.AllowUserToAddRows = true;
                 editableDG.AllowDrop = true;
+
                 this.Controls.Add(EditPanel);
                 EditPanel.Size = this.ClientSize;
                 EditPanel.Visible = true;
                 EditPanel.BringToFront();
+
+                //add dg view to editable panel here
                 EditPanel.Controls.Add(editableDG);
                 this.Editbtn.Text = "Back";
                 EditPanel.Controls.Add(this.Editbtn);
-                
             }
             else if (Editbtn.Text.Equals("Back"))
             {
