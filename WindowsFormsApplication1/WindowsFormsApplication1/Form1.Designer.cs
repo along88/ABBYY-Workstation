@@ -92,7 +92,7 @@
             this.Controls.Add(this.txtControlNo);
             this.Controls.Add(this.dgViewSOV);
             this.Name = "LocationComparison";
-            this.Text = "Location Comparison";
+            this.Text = "Sharper Workstation";
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

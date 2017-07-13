@@ -43,6 +43,8 @@ namespace WindowsFormsApplication1
 
         public event EventHandler<EventArgs> onStateChanged;
 
+    
+
         
 
         private void txtControlNo_TextChanged(object sender , EventArgs e)
@@ -70,11 +72,17 @@ namespace WindowsFormsApplication1
             {
                 EditPanel = new Panel();
                 DataGridView editableDG = dgViewSOV;
+                editableDG.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+                editableDG.
+                editableDG.MultiSelect = true;
+                editableDG.AllowUserToDeleteRows = true;
+                editableDG.AllowUserToAddRows = true;
+                editableDG.AllowDrop = true;
                 this.Controls.Add(EditPanel);
                 EditPanel.Size = this.ClientSize;
                 EditPanel.Visible = true;
                 EditPanel.BringToFront();
-                EditPanel.Controls.Add(this.dgViewSOV);
+                EditPanel.Controls.Add(editableDG);
                 this.Editbtn.Text = "Back";
                 EditPanel.Controls.Add(this.Editbtn);
                 
@@ -90,10 +98,10 @@ namespace WindowsFormsApplication1
             }
 
 
-            //perhaps store a reference to current grid state and update the stored
-            //reference every time a change is made
-
-            //allow the grid to be exported into a locally saved Excel file
         }
+
+      
+
+        
     }
 }
