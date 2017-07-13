@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class LocationComparison
+    partial class SharperWorkstation
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             this.txtControlNo = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.controlNumberLabel = new System.Windows.Forms.Label();
+            this.Editbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,6 @@
             this.btnExport.TabIndex = 6;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // controlNumberLabel
             // 
@@ -70,17 +70,28 @@
             this.controlNumberLabel.TabIndex = 7;
             this.controlNumberLabel.Text = "Control Number:";
             // 
+            // Editbtn
+            // 
+            this.Editbtn.Location = new System.Drawing.Point(520, 10);
+            this.Editbtn.Name = "Editbtn";
+            this.Editbtn.Size = new System.Drawing.Size(65, 23);
+            this.Editbtn.TabIndex = 8;
+            this.Editbtn.Text = "Edit";
+            this.Editbtn.UseVisualStyleBackColor = true;
+            this.Editbtn.Click += new System.EventHandler(this.Editbtn_Click);
+            // 
             // LocationComparison
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 355);
+            this.Controls.Add(this.Editbtn);
             this.Controls.Add(this.controlNumberLabel);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.txtControlNo);
             this.Controls.Add(this.dgViewSOV);
             this.Name = "LocationComparison";
-            this.Text = "Location Comparison";
+            this.Text = "Sharper Workstation";
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -93,6 +104,7 @@
         private System.Windows.Forms.TextBox txtControlNo;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label controlNumberLabel;
+        private System.Windows.Forms.Button Editbtn;
     }
 }
 
