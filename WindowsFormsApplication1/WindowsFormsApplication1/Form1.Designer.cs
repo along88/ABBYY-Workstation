@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class LocationComparison
+    partial class SharperWorkstation
     {
         /// <summary>
         /// Required designer variable.
@@ -60,7 +60,6 @@
             this.btnExport.TabIndex = 6;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // controlNumberLabel
             // 

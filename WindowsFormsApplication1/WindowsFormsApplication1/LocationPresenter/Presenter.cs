@@ -21,10 +21,6 @@ namespace WindowsFormsApplication1.LocationPresenter
             EventListeners();
         }
 
-        public Presenter()
-        {
-        }
-
         private void EventListeners()
         {
             view.onStateChanged += UpdateGrid;
