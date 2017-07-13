@@ -20,9 +20,9 @@ namespace WindowsFormsApplication1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             IModel model = new Model();
-            IView view = new LocationComparison();
+            IView view = new SharperWorkstation();
             Presenter presenter = new Presenter(model, view);
-            Application.Run(view as LocationComparison);
+            Application.Run(view as SharperWorkstation);
         }
     }
 }
