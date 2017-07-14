@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WindowsFormsApplication1.LocationModels;
-using WindowsFormsApplication1.LocationView;
+using WindowsFormsApplication1.WorkstationModels;
+using WindowsFormsApplication1.WorkstationView;
 using System.Windows.Forms;
-namespace WindowsFormsApplication1.LocationPresenter
+namespace WindowsFormsApplication1.WorkstationPresenter
 {
-    public class Presenter
+    public class SearchPresenter
     {
-        private readonly IModel model;
-        private readonly IView view;
+        private readonly ISearchModel model;
+        private readonly ISearchView view;
         
         
-        public Presenter(IModel model, IView view)
+        public SearchPresenter(ISearchModel model, ISearchView view)
         {
             this.model = model;
             this.view = view;

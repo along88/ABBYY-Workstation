@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.LocationModels;
-using WindowsFormsApplication1.LocationPresenter;
-using WindowsFormsApplication1.LocationView;
+using WindowsFormsApplication1.WorkstationModels;
+using WindowsFormsApplication1.WorkstationPresenter;
+using WindowsFormsApplication1.WorkstationView;
 
 namespace WindowsFormsApplication1
 {
@@ -19,9 +19,9 @@ namespace WindowsFormsApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IModel model = new Model();
-            IView view = new SharperWorkstation();
-            Presenter presenter = new Presenter(model, view);
+            ISearchModel model = new SearchModel();
+            ISearchView view = new SharperWorkstation();
+            SearchPresenter presenter = new SearchPresenter(model, view);
             Application.Run(view as SharperWorkstation);
         }
     }

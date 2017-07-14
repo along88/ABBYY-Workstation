@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.LocationView
+namespace WindowsFormsApplication1.WorkstationView
 {
-    public interface IView
+    public interface ISearchView
     {
         string ControlNo { get; set; }
         object Grid { get; set; }

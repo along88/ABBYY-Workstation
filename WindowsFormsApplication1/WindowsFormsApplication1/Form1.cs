@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.LocationView;
+using WindowsFormsApplication1.WorkstationView;
 
 namespace WindowsFormsApplication1
 {
-    public partial class SharperWorkstation : Form, IView
+    public partial class SharperWorkstation : Form, ISearchView
     {
         public SharperWorkstation()
         {
