@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace WindowsFormsApplication1.LocationModels
+namespace WindowsFormsApplication1.WorkstationModels
 {
-    public interface IModel
+    public interface ISearchModel
     {
         string ControlNo { get; set; }
         string ErrorMessage { get; set; }

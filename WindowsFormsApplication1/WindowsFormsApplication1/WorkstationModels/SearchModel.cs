@@ -7,9 +7,9 @@ using System.Data.SqlClient;
 using System.Data;
 //using Microsoft.Office.Interop.Excel;
 using System.Configuration;
-namespace WindowsFormsApplication1.LocationModels
+namespace WindowsFormsApplication1.WorkstationModels
 {
-    public class Model : IModel
+    public class SearchModel : ISearchModel
     {
         private string controlNo; 
         private string errorMessage;

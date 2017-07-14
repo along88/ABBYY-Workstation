@@ -61,10 +61,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocationModels\IModel.cs" />
-    <Compile Include="LocationModels\Model.cs" />
-    <Compile Include="LocationPresenter\Presenter.cs" />
-    <Compile Include="LocationView\IView.cs" />
+    <Compile Include="WorkstationModels\ISearchModel.cs" />
+    <Compile Include="WorkstationModels\SearchModel.cs" />
+    <Compile Include="WorkstationPresenter\SearchPresenter.cs" />
+    <Compile Include="WorkstationView\ISearchView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
