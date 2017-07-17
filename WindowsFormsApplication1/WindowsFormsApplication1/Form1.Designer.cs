@@ -30,7 +30,7 @@
         {
             this.dgViewSOV = new System.Windows.Forms.DataGridView();
             this.txtControlNo = new System.Windows.Forms.TextBox();
-            this.btnExport = new System.Windows.Forms.Button();
+            this.BtnExport = new System.Windows.Forms.Button();
             this.controlNumberLabel = new System.Windows.Forms.Label();
             this.Editbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).BeginInit();
@@ -52,14 +52,15 @@
             this.txtControlNo.TabIndex = 5;
             this.txtControlNo.TextChanged += new System.EventHandler(this.txtControlNo_TextChanged);
             // 
-            // btnExport
+            // BtnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(591, 10);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 6;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
+            this.BtnExport.Location = new System.Drawing.Point(591, 10);
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(75, 23);
+            this.BtnExport.TabIndex = 6;
+            this.BtnExport.Text = "Export";
+            this.BtnExport.UseVisualStyleBackColor = true;
+            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // controlNumberLabel
             // 
@@ -80,17 +81,17 @@
             this.Editbtn.UseVisualStyleBackColor = true;
             this.Editbtn.Click += new System.EventHandler(this.Editbtn_Click);
             // 
-            // LocationComparison
+            // SharperWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 355);
             this.Controls.Add(this.Editbtn);
             this.Controls.Add(this.controlNumberLabel);
-            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.BtnExport);
             this.Controls.Add(this.txtControlNo);
             this.Controls.Add(this.dgViewSOV);
-            this.Name = "LocationComparison";
+            this.Name = "SharperWorkstation";
             this.Text = "Sharper Workstation";
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
@@ -102,7 +103,7 @@
 
         private System.Windows.Forms.DataGridView dgViewSOV;
         private System.Windows.Forms.TextBox txtControlNo;
-        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button BtnExport;
         private System.Windows.Forms.Label controlNumberLabel;
         private System.Windows.Forms.Button Editbtn;
     }

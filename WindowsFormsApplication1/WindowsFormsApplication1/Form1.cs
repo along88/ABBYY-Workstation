@@ -25,9 +25,9 @@ namespace WindowsFormsApplication1
             set { txtControlNo.Text = value; }
         }
 
-        public object Grid
+        public DataTable Grid
         {
-            get {return dgViewSOV.DataSource;}
+            get { return (DataTable)dgViewSOV.DataSource;}
             set { dgViewSOV.DataSource = value; }
         }
 
@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
             set;
         }
 
-        public event EventHandler<EventArgs> onStateChanged;
+        public event EventHandler<EventArgs> OnStateChanged;
 
         private void txtControlNo_TextChanged(object sender , EventArgs e)
         {
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             if (!string.IsNullOrWhiteSpace(txtBox.Text))
             {
                 
-                onStateChanged(this, e);
+                OnStateChanged(this, e);
 
             }
 
@@ -85,12 +85,11 @@ namespace WindowsFormsApplication1
                 this.Controls.Add(dgViewSOV);
                 this.BringToFront();
             }
-
-
         }
 
-      
-
-        
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
