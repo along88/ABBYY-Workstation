@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 //using Microsoft.Office.Interop.Excel;
 using System.Configuration;
-namespace WindowsFormsApplication1.WorkstationModels
+namespace SharperWorkstation.WorkstationModels
 {
     public class SearchModel : ISearchModel
     {

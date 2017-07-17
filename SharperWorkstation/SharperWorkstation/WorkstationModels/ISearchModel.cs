@@ -4,16 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.WorkstationView
+namespace SharperWorkstation.WorkstationModels
 {
-    public interface ISearchView
+    public interface ISearchModel
     {
         string ControlNo { get; set; }
+        string ErrorMessage { get; set; }
+
         object Grid { get; set; }
 
-        event EventHandler<EventArgs> onStateChanged;
         
+       
+        bool Connect();
+        DataTable ReturnData(string query);
+
+
+
+
+
+
+
+
     }
 }

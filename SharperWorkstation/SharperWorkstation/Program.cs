@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SharperWorkstation.WorkstationView;
+using System;
 using System.Windows.Forms;
-using WindowsFormsApplication1.WorkstationModels;
-using WindowsFormsApplication1.WorkstationPresenter;
-using WindowsFormsApplication1.WorkstationView;
+using SharperWorkstation.WorkstationModels;
+using SharperWorkstation.WorkstationPresenter;
 
 namespace WindowsFormsApplication1
 {

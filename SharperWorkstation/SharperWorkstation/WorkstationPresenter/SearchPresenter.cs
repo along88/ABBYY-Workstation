@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WindowsFormsApplication1.WorkstationModels;
-using WindowsFormsApplication1.WorkstationView;
+using SharperWorkstation.WorkstationModels;
 using System.Windows.Forms;
-namespace WindowsFormsApplication1.WorkstationPresenter
+using SharperWorkstation.WorkstationView;
+
+namespace SharperWorkstation.WorkstationPresenter
 {
     public class SearchPresenter
     {

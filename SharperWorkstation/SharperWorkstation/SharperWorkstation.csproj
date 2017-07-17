@@ -7,8 +7,8 @@
     <ProjectGuid>{610C258B-F9C1-49B1-B65C-CDD3E40CA59D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
-    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <RootNamespace>SharperWorkstation</RootNamespace>
+    <AssemblyName>SharperWorkstation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,8 +61,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkstationModels\EditModel.cs" />
+    <Compile Include="WorkstationModels\IEditModel.cs" />
     <Compile Include="WorkstationModels\ISearchModel.cs" />
     <Compile Include="WorkstationModels\SearchModel.cs" />
+    <Compile Include="WorkstationPresenter\EditPresenter.cs" />
+    <Compile Include="WorkstationView\IEditView.cs" />
     <Compile Include="WorkstationPresenter\SearchPresenter.cs" />
     <Compile Include="WorkstationView\ISearchView.cs" />
     <Compile Include="Program.cs" />

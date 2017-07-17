@@ -16,3 +16,4 @@ C:\Users\along\Documents\GitHub\Location-Comparison\WindowsFormsApplication1\Win
 C:\Users\along\Documents\GitHub\Location-Comparison\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\along\Documents\GitHub\Location-Comparison\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\along\Documents\GitHub\Location-Comparison\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.SharperWorkstation.resources
+C:\Users\along\Documents\SharperWorkstation\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
