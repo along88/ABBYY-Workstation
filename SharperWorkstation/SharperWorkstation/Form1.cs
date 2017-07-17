@@ -1,18 +1,21 @@
-﻿using SharperWorkstation.WorkstationView;
+﻿using SharperWorkstation;
+using SharperWorkstation.WorkstationView;
 using System;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class SharperWorkstation : Form, ISearchView
+    public partial class SharperWorkstation : CustomForm, ISearchView
     {
         public SharperWorkstation()
         {
             InitializeComponent();
+
         }
 
         public string ControlNo
         {
+
             get { return txtControlNo.Text; }
 
             set { txtControlNo.Text = value; }
@@ -47,7 +50,7 @@ namespace WindowsFormsApplication1
 
         private void Editbtn_Click(object sender, EventArgs e)
         {
-            
+           
             if (EditPanel == null)
             {
                 EditPanel = new Panel();

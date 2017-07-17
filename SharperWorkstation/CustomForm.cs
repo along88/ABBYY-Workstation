@@ -13,6 +13,7 @@ namespace SharperWorkstation
         public CustomForm( ) : base()
         {
             Size = new System.Drawing.Size(335, 715);
+            
         }
     }
 }
