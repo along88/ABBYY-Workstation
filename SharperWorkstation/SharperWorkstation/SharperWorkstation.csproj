@@ -50,10 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -66,8 +75,8 @@
     <Compile Include="WorkstationModels\ISearchModel.cs" />
     <Compile Include="WorkstationModels\SearchModel.cs" />
     <Compile Include="WorkstationPresenter\EditPresenter.cs" />
-    <Compile Include="WorkstationView\IEditView.cs" />
     <Compile Include="WorkstationPresenter\SearchPresenter.cs" />
+    <Compile Include="WorkstationView\IEditView.cs" />
     <Compile Include="WorkstationView\ISearchView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
