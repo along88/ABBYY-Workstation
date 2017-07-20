@@ -11,12 +11,10 @@ namespace WindowsFormsApplication1.LocationModels
     {
         string ControlNo { get; set; }
         string ErrorMessage { get; set; }
-
         DataTable Grid { get; set; }
-
-        
-       
+                      
         bool Connect();
+
         DataTable ReturnData(string query);
 
 

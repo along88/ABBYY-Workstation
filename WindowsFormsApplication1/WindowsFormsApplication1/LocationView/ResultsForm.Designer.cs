@@ -38,6 +38,8 @@
             // 
             // dgViewSOV
             // 
+            this.dgViewSOV.AllowUserToAddRows = false;
+            this.dgViewSOV.AllowUserToDeleteRows = false;
             this.dgViewSOV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewSOV.Location = new System.Drawing.Point(0, 38);
             this.dgViewSOV.Name = "dgViewSOV";
@@ -60,7 +62,7 @@
             this.BtnExport.TabIndex = 6;
             this.BtnExport.Text = "Export";
             this.BtnExport.UseVisualStyleBackColor = true;
-            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.BtnExport.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnExport_MouseClick);
             // 
             // controlNumberLabel
             // 
@@ -92,7 +94,7 @@
             this.Controls.Add(this.txtControlNo);
             this.Controls.Add(this.dgViewSOV);
             this.Name = "SharperWorkstation";
-            this.Text = "Sharper Workstation";
+            this.Text = "SharperWorkstation";
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

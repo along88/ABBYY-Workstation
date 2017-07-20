@@ -45,9 +45,7 @@ namespace WindowsFormsApplication1
             TextBox txtBox = sender as TextBox;
             if (!string.IsNullOrWhiteSpace(txtBox.Text))
             {
-                
                 OnStateChanged(this, e);
-
             }
 
         }
@@ -87,9 +85,45 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void BtnExport_Click(object sender, EventArgs e)
+        private void BtnExport_MouseClick(object sender, MouseEventArgs e)
         {
+            List<WorkstationRow> allRows = new List<WorkstationRow>();
+
+            foreach (DataGridViewRow dgRow in dgViewSOV.Rows)
+            {
+                foreach (DataGridViewCell dgCell in dgRow.Cells)
+                {
+                    allRows.Add();
+                }
+            }
             
         }
+
+        // This method can iterate through all cells in a row, store them in an "object", and display them
+        //private void BtnExport_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    List<List<string>> allRows = new List<List<string>>();
+        //    List<string> currentRow;
+        //    foreach (DataGridViewRow row in dgViewSOV.Rows)
+        //    {
+        //        currentRow = new List<string>();
+        //        foreach (DataGridViewCell cell in row.Cells)
+        //        {
+        //            string currentCell = cell.Value.ToString();
+        //            currentRow.Add(currentCell);
+        //        }
+        //        allRows.Add(currentRow);
+        //    }
+
+        //    foreach (var i in allRows)
+        //    {
+        //        string row = "";
+        //        foreach (var item in i)
+        //        {
+        //            row += item + " ";
+        //        }
+        //        MessageBox.Show(row);
+        //    }
+        //}
     }
 }
