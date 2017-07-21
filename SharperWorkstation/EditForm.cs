@@ -17,9 +17,11 @@ namespace SharperWorkstation
         public EditForm()
         {
             InitializeComponent();
+            dgViewSOV.ClearSelection();
             foreach (DataGridViewColumn column in dgViewSOV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                
             }
             
             activeForms.Add(this);
@@ -28,13 +30,9 @@ namespace SharperWorkstation
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
             dgViewSOV.ColumnHeaderMouseClick += DgViewSOV_ColumnHeaderMouseClick;
-            
-            
-            
-
-
         }
-
+       
+     
         private void DgViewSOV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -54,13 +52,12 @@ namespace SharperWorkstation
            if(e.Button == MouseButtons.Right)
             {
                 ContextMenuStrip editMenu = new ContextMenuStrip();
-                int positionX = e.Location.X;
-                int positionY = e.Location.Y;
                 editMenu.Items.Add("Select All").Name ="SelectAll";
                 editMenu.Items.Add("Copy").Name = "Copy";
                 editMenu.Items.Add("Paste").Name = "Paste";
                 editMenu.Show(dgViewSOV,e.X,e.Y);
                 editMenu.ItemClicked += new ToolStripItemClickedEventHandler(menuItemClicked);
+                
 
             }
         }
@@ -89,7 +86,8 @@ namespace SharperWorkstation
 
         private void ValueDropped(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgViewSOV.SelectedCells != null)
+
+            if (grabbedValue != null)
             {
                 foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
                 {
@@ -98,7 +96,7 @@ namespace SharperWorkstation
                     
                 }
             }
-            dgViewSOV.ClearSelection();
+           // dgViewSOV.ClearSelection();
         }
 
         public object grid
@@ -162,8 +160,7 @@ namespace SharperWorkstation
                 if (e.Clicks < 2 && dgViewSOV.SelectedCells.Count < 2)
                 {
 
-                    dgViewSOV.CurrentCell = dgViewSOV.Rows[r].Cells[c];
-                    grabbedValue = dgViewSOV.CurrentCell.Value.ToString();
+                    grabbedValue = dgViewSOV.Rows[r].Cells[c].Value.ToString();
                     columRestricted = c;
 
                 }
@@ -174,10 +171,5 @@ namespace SharperWorkstation
             }
             
         }
-
-      
-
-      
-      
     }
 }
