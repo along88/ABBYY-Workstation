@@ -17,13 +17,73 @@ namespace SharperWorkstation
         public EditForm()
         {
             InitializeComponent();
+            foreach (DataGridViewColumn column in dgViewSOV.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            
             activeForms.Add(this);
-            dgViewSOV.AllowDrop = true;
+            dgViewSOV.MouseUp += RightClick;
             dgViewSOV.KeyUp += PasteIntoSelectedCell;
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
+            dgViewSOV.ColumnHeaderMouseClick += DgViewSOV_ColumnHeaderMouseClick;
+            
+            
             
 
+
+        }
+
+        private void DgViewSOV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            if (dgViewSOV.Columns[e.ColumnIndex].Frozen)
+            {
+                for (int i = 0; i < (e.ColumnIndex); i++)
+                {
+                    dgViewSOV.Columns[i].Frozen = false;
+                }
+            }
+            else
+                dgViewSOV.Columns[e.ColumnIndex].Frozen = true;
+        }
+
+        private void RightClick(object sender, MouseEventArgs e)
+        {
+           if(e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip editMenu = new ContextMenuStrip();
+                int positionX = e.Location.X;
+                int positionY = e.Location.Y;
+                editMenu.Items.Add("Select All").Name ="SelectAll";
+                editMenu.Items.Add("Copy").Name = "Copy";
+                editMenu.Items.Add("Paste").Name = "Paste";
+                editMenu.Show(dgViewSOV,e.X,e.Y);
+                editMenu.ItemClicked += new ToolStripItemClickedEventHandler(menuItemClicked);
+
+            }
+        }
+
+        private void menuItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "SelectAll":
+                    dgViewSOV.SelectAll();
+                    break;
+                case "Copy":
+                    Clipboard.SetText(dgViewSOV.CurrentCell.Value.ToString());
+                    break;
+                case "Paste":
+                    dgViewSOV.CurrentCell.Value = Clipboard.GetText();
+                    break;
+
+            }
+            if (e.ClickedItem.Name.Equals("SelectAll"))
+            {
+                dgViewSOV.SelectAll();
+            }
 
         }
 
@@ -35,8 +95,7 @@ namespace SharperWorkstation
                 {
                     if (item.ColumnIndex == columRestricted)
                         item.Value = grabbedValue;
-                    else
-                        MessageBox.Show("Can only slide up or down!");
+                    
                 }
             }
             dgViewSOV.ClearSelection();
@@ -70,21 +129,10 @@ namespace SharperWorkstation
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-
-            //need to give datagrid view control back to the search form
-            //MessageBox.Show(dgViewSOV.AllowDrop.ToString());
-
-            if (dgViewSOV.SelectedCells != null)
-            {
-                foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
-                {
-                    item.Value = debugClipBoardValue;
-                }
-            }
-
-            //activeForms.Remove(this);
+            MessageBox.Show("Hello World!");
         }
 
+       
         private void PasteIntoSelectedCell(object sender, KeyEventArgs e)
         {
             if((e.Shift && e.KeyCode == Keys.Insert) || (e.Control && e.KeyCode == Keys.V))
@@ -109,15 +157,25 @@ namespace SharperWorkstation
             
             int c = e.ColumnIndex;
             int r = e.RowIndex;
-            if(e.Clicks < 2 && dgViewSOV.SelectedCells.Count < 2)
+            try
             {
-                dgViewSOV.CurrentCell = dgViewSOV.Rows[r].Cells[c];
-                grabbedValue = dgViewSOV.CurrentCell.Value.ToString();
-                columRestricted = c;
+                if (e.Clicks < 2 && dgViewSOV.SelectedCells.Count < 2)
+                {
 
+                    dgViewSOV.CurrentCell = dgViewSOV.Rows[r].Cells[c];
+                    grabbedValue = dgViewSOV.CurrentCell.Value.ToString();
+                    columRestricted = c;
+
+                }
+            }
+            catch(Exception)
+            {
+               
             }
             
         }
+
+      
 
       
       
