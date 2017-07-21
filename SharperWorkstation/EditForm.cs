@@ -17,7 +17,7 @@ namespace SharperWorkstation
         public EditForm()
         {
             InitializeComponent();
-            dgViewSOV.ClearSelection();
+           
             foreach (DataGridViewColumn column in dgViewSOV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -96,7 +96,7 @@ namespace SharperWorkstation
                     
                 }
             }
-           // dgViewSOV.ClearSelection();
+           
         }
 
         public object grid
@@ -152,22 +152,30 @@ namespace SharperWorkstation
         private int columRestricted;
         private void ValueClickedHold(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+
+             
             int c = e.ColumnIndex;
             int r = e.RowIndex;
             try
             {
-                if (e.Clicks < 2 && dgViewSOV.SelectedCells.Count < 2)
-                {
-
-                    grabbedValue = dgViewSOV.Rows[r].Cells[c].Value.ToString();
+                grabbedValue = dgViewSOV.Rows[r].Cells[c].Value.ToString();
                     columRestricted = c;
 
-                }
             }
-            catch(Exception)
+            catch(Exception exception)
             {
-               
+                for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+                {
+                    if(dgViewSOV.Columns[i].DisplayIndex == e.ColumnIndex)
+                    {
+                        break;
+                    }
+                    else if(i == dgViewSOV.Columns.Count)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+                }
+                
             }
             
         }
