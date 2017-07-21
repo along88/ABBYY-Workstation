@@ -7,9 +7,12 @@ namespace SharperWorkstation
 {
     public partial class SharperWorkstation : CustomForm, ISearchView
     {
+        bool isActive;
         public SharperWorkstation()
         {
             InitializeComponent();
+            activeForms.Add(this);
+            isActive = true;
 
         }
 
@@ -35,6 +38,8 @@ namespace SharperWorkstation
 
         public event EventHandler<EventArgs> onStateChanged;
 
+        public event EventHandler<EventArgs> onDeactive;
+
         private void txtControlNo_TextChanged(object sender , EventArgs e)
         {
             
@@ -50,24 +55,27 @@ namespace SharperWorkstation
 
         private void Editbtn_Click(object sender, EventArgs e)
         {
+            isActive = false;
+            activeForms.Remove(this);
             EditForm editForm = new EditForm();
-            
-            AddOwnedForm(editForm);
-            foreach (var item in this.OwnedForms)
-            {
-                if (item.Name.Equals("EditForm"))
-                {
-                    item.Visible = true;
-                    break;
-                }
-                    
-            }
+            editForm.Visible = true;
+            //AddOwnedForm(editForm);
            
+            //    foreach (var item in this.OwnedForms)
+            //    {
+            //        if (item.Name.Equals("EditForm"))
+            //        {
+            //            item.Visible = true;
+            //            break;
+            //        }
+
+            //    }
+            
             //if (EditPanel == null)
             //{
             //    EditPanel = new Panel();
             //    DataGridView editableDG = dgViewSOV;
-                
+
             //    editableDG.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             //    editableDG.MultiSelect = true;
             //    editableDG.AllowUserToDeleteRows = true;

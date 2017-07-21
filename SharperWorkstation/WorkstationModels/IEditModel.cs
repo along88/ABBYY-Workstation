@@ -8,5 +8,6 @@ namespace SharperWorkstation.WorkstationModels
 {
     interface IEditModel
     {
+        IList<string> selectedCells { get; set; }
     }
 }

@@ -1,6 +1,14 @@
-﻿namespace SharperWorkstation.WorkstationView
+﻿using System;
+using System.Collections.Generic;
+
+namespace SharperWorkstation.WorkstationView
 {
     internal interface IEditView
     {
+        object grid { get; }
+
+        IList<string> selectedCells {get; }
+
+        event EventHandler<EventArgs> onStateChanged;
     }
 }

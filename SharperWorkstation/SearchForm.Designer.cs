@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgViewSOV = new System.Windows.Forms.DataGridView();
+            
             this.txtControlNo = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.controlNumberLabel = new System.Windows.Forms.Label();
             this.Editbtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).BeginInit();
             this.SuspendLayout();
             // 
             // dgViewSOV
             // 
-            this.dgViewSOV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgViewSOV.Location = new System.Drawing.Point(0, 38);
-            this.dgViewSOV.Name = "dgViewSOV";
-            this.dgViewSOV.Size = new System.Drawing.Size(719, 318);
-            this.dgViewSOV.TabIndex = 0;
+            //this.dgViewSOV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            //this.dgViewSOV.Location = new System.Drawing.Point(0, 38);
+            //this.dgViewSOV.Name = "dgViewSOV";
+            //this.dgViewSOV.Size = new System.Drawing.Size(719, 318);
+            //this.dgViewSOV.TabIndex = 0;
             // 
             // txtControlNo
             // 
@@ -89,10 +89,10 @@
             this.Controls.Add(this.controlNumberLabel);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.txtControlNo);
-            this.Controls.Add(this.dgViewSOV);
+            //this.Controls.Add(this.dgViewSOV);
             this.Name = "LocationComparison";
             this.Text = "Sharper Workstation";
-            ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
+           // ((System.ComponentModel.ISupportInitialize)(this.dgViewSOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,7 +100,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgViewSOV;
+        //private System.Windows.Forms.DataGridView dgViewSOV;
         private System.Windows.Forms.TextBox txtControlNo;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label controlNumberLabel;

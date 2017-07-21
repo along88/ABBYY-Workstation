@@ -27,6 +27,7 @@ namespace SharperWorkstation.WorkstationPresenter
             view.onStateChanged += UpdateGrid;
         }
 
+       
         private void UpdateGrid(object sender, EventArgs e)
         {
             

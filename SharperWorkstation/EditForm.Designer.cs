@@ -39,6 +39,7 @@
             this.backBtn.TabIndex = 0;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // EditForm
             // 
@@ -48,6 +49,7 @@
             this.Controls.Add(this.backBtn);
             this.Name = "EditForm";
             this.Text = "Sharper Workstation";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditForm_DragDrop);
             this.ResumeLayout(false);
 
         }

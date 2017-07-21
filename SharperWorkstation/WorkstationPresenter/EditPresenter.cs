@@ -18,6 +18,20 @@ namespace SharperWorkstation.WorkstationPresenter
             this.editModel = model;
             this.editView = view;
         }
-        
+        private void EventListeners()
+        {
+            editView.onStateChanged += UpdateCells;
+        }
+
+
+        private void UpdateCells(object sender, EventArgs e)
+        {
+            
+
+            if(editModel.selectedCells != null)
+            {
+                editModel.selectedCells = editView.selectedCells;
+            }
+        }
     }
 }
