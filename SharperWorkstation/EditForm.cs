@@ -13,12 +13,15 @@ namespace SharperWorkstation
 {
     public partial class EditForm : CustomForm, IEditView
     {
+        private string debugClipBoardValue = "788 Bloomfield Avenue";
         public EditForm()
         {
             InitializeComponent();
             activeForms.Add(this);
             dgViewSOV.AllowDrop = true;
-            
+            dgViewSOV.KeyUp += PasteIntoSelectedCell;
+
+
         }
 
         public object grid
@@ -28,12 +31,20 @@ namespace SharperWorkstation
                 return dgViewSOV.DataSource;
             }
         }
-
-        public IList<string> selectedCells
+       
+        public IList<string> SelectedCells
         {
             get
             {
-                return (IList<string>)dgViewSOV.SelectedCells;
+                List<string> selectedCells = new List<string>();
+                if (dgViewSOV.SelectedCells != null)
+                {
+                    foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
+                    {
+                        selectedCells.Add(item.Value.ToString());
+                    }
+                }
+                return selectedCells;
             }
         }
 
@@ -43,22 +54,36 @@ namespace SharperWorkstation
         {
 
             //need to give datagrid view control back to the search form
-            MessageBox.Show(dgViewSOV.AllowDrop.ToString());
-            activeForms.Remove(this);
+            //MessageBox.Show(dgViewSOV.AllowDrop.ToString());
+
+            if (dgViewSOV.SelectedCells != null)
+            {
+                foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
+                {
+                    item.Value = debugClipBoardValue;
+                }
+            }
+
+            //activeForms.Remove(this);
         }
 
-        private void EditForm_DragDrop(object sender, DragEventArgs e)
+        private void PasteIntoSelectedCell(object sender, KeyEventArgs e)
         {
-            string droppedVale = sender as string;
-            for (int i = 0; i < selectedCells.Count; i++)
+            if((e.Shift && e.KeyCode == Keys.Insert) || (e.Control && e.KeyCode == Keys.V))
             {
-                selectedCells[i] = droppedVale;
+                IDataObject dataInClipboard = Clipboard.GetDataObject();
+                string stringInClipBoard = (string)dataInClipboard.GetData(DataFormats.Text);
+                if (dgViewSOV.SelectedCells != null)
+                {
+                    foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
+                    {
+                        item.Value = stringInClipBoard;
+                    }
+                }
             }
         }
 
-        string grabbedItem;
-       
-
+      
       
     }
 }

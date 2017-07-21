@@ -49,7 +49,6 @@
             this.Controls.Add(this.backBtn);
             this.Name = "EditForm";
             this.Text = "Sharper Workstation";
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditForm_DragDrop);
             this.ResumeLayout(false);
 
         }

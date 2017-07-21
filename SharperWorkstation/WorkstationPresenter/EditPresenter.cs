@@ -30,7 +30,7 @@ namespace SharperWorkstation.WorkstationPresenter
 
             if(editModel.selectedCells != null)
             {
-                editModel.selectedCells = editView.selectedCells;
+                editModel.selectedCells = editView.SelectedCells;
             }
         }
     }

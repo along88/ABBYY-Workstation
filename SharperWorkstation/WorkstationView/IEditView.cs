@@ -7,7 +7,7 @@ namespace SharperWorkstation.WorkstationView
     {
         object grid { get; }
 
-        IList<string> selectedCells {get; }
+        IList<string> SelectedCells { get;}
 
         event EventHandler<EventArgs> onStateChanged;
     }
