@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using WindowsFormsApplication1.LocationModels;
 using WindowsFormsApplication1.LocationView;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using System.IO;
+using System.Data;
+
 namespace WindowsFormsApplication1.LocationPresenter
 {
     public class Presenter
@@ -13,7 +17,8 @@ namespace WindowsFormsApplication1.LocationPresenter
         // Class variables for the model and view interfaces - JM
         private readonly IModel model;
         private readonly IView view;
-                
+
+
         // Ctor - JM
         public Presenter(IModel model, IView view)
         {
@@ -51,20 +56,63 @@ namespace WindowsFormsApplication1.LocationPresenter
                 {
                     MessageBox.Show(model.ErrorMessage);
                 }
-                
-                
             }
         }
 
-        
+        //public void ExportToExcel(DataGridView table)
+        //{
+        //    List<WorkstationRow> allRows = new List<WorkstationRow>();
+        //    WorkstationRow currentRow;
+        //    foreach (DataGridViewRow row in table.Rows)
+        //    {
+        //        currentRow = new WorkstationRow();
+        //        foreach (DataGridViewCell cell in row.Cells)
+        //        {
+        //            string currentCell = cell.Value.ToString();
+        //            currentRow.Add(currentCell);
+        //        }
+        //        allRows.Add(currentRow);
+        //    }
+        //    FileInfo excelFile = new FileInfo(filepath + $"Control Number - {view.ControlNo} ({today}).xlsx");
+        //    if (excelFile.Exists)
+        //    {
+        //        excelFile.Delete();
+        //        excelFile = new FileInfo(filepath + $"Control Number - {view.ControlNo} ({today}).xlsx");
+        //    }
+        //    using (ExcelPackage pkg = new ExcelPackage())
+        //    {
+        //        pkg.Workbook.Worksheets.Add("ABBYY Results");
+        //        ExcelWorksheet sheet = pkg.Workbook.Worksheets[1];
+        //        sheet.Name = "ABBYY Results";
 
-        
+        //        for (int i = 0; i < headers.Length; i++)
+        //        {
+        //            sheet.Cells[1, i + 1].Value = headers[i];
+        //        }
 
-      
-        
+        //        int excelRowStart = 2;
+        //        foreach (var row in allRows)
+        //        {
+        //            for (int rowIndex = 0; rowIndex < row.Length(); rowIndex++)
+        //            {
+        //                sheet.Cells[excelRowStart, rowIndex + 1].Value = row.DataAtIndex(rowIndex);
+        //            }
+        //            excelRowStart++;
+        //        }
+        //        string excelBookName = $"Control Number - {view.ControlNo} ({today}).xlsx";
+        //        Byte[] sheetAsBinary = pkg.GetAsByteArray();
+        //        File.WriteAllBytes(Path.Combine(filepath, excelBookName), sheetAsBinary);
+        //    }
+        //}
 
-        
 
-        
+
+
+
+
+
+
+
+
     }
 }

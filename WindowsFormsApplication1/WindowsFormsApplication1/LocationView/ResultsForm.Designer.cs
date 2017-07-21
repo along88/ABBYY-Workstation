@@ -52,7 +52,7 @@
             this.txtControlNo.Name = "txtControlNo";
             this.txtControlNo.Size = new System.Drawing.Size(100, 20);
             this.txtControlNo.TabIndex = 5;
-            this.txtControlNo.TextChanged += new System.EventHandler(this.txtControlNo_TextChanged);
+            this.txtControlNo.TextChanged += new System.EventHandler(this.TxtControlNo_TextChanged);
             // 
             // BtnExport
             // 
