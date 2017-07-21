@@ -20,8 +20,26 @@ namespace SharperWorkstation
             activeForms.Add(this);
             dgViewSOV.AllowDrop = true;
             dgViewSOV.KeyUp += PasteIntoSelectedCell;
+            dgViewSOV.CellMouseDown += ValueClickedHold;
+            dgViewSOV.CellMouseUp += ValueDropped;
+            
 
 
+        }
+
+        private void ValueDropped(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgViewSOV.SelectedCells != null)
+            {
+                foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
+                {
+                    if (item.ColumnIndex == columRestricted)
+                        item.Value = grabbedValue;
+                    else
+                        MessageBox.Show("Can only slide up or down!");
+                }
+            }
+            dgViewSOV.ClearSelection();
         }
 
         public object grid
@@ -77,10 +95,28 @@ namespace SharperWorkstation
                 {
                     foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
                     {
+                        
                         item.Value = stringInClipBoard;
                     }
                 }
             }
+        }
+
+        private string grabbedValue;
+        private int columRestricted;
+        private void ValueClickedHold(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+            int c = e.ColumnIndex;
+            int r = e.RowIndex;
+            if(e.Clicks < 2 && dgViewSOV.SelectedCells.Count < 2)
+            {
+                dgViewSOV.CurrentCell = dgViewSOV.Rows[r].Cells[c];
+                grabbedValue = dgViewSOV.CurrentCell.Value.ToString();
+                columRestricted = c;
+
+            }
+            
         }
 
       
