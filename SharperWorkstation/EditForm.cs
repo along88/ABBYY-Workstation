@@ -16,14 +16,29 @@ namespace SharperWorkstation
         private string debugClipBoardValue = "788 Bloomfield Avenue";
         public EditForm()
         {
-            InitializeComponent();
+            DataGridViewComboBoxCell cbc = new DataGridViewComboBoxCell();
+            cbc.Items.AddRange("1.Frame", "2.Joisted Masonry", "3.Fire Resistive");
+
            
+            
+            
+            InitializeComponent();
+
+            
             foreach (DataGridViewColumn column in dgViewSOV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                
+                if (column.Index == 18)
+                {
+                    cbc.Value = column;
+                    dgViewSOV.Columns.RemoveAt(column.Index);
+                    
+                    
+                }
             }
             
+            
+
             activeForms.Add(this);
             dgViewSOV.MouseUp += RightClick;
             dgViewSOV.KeyUp += PasteIntoSelectedCell;
@@ -83,29 +98,42 @@ namespace SharperWorkstation
             }
 
         }
+        int value;
 
         private void ValueDropped(object sender, DataGridViewCellMouseEventArgs e)
         {
-
-            if (grabbedValue != null)
+           
+            if (int.TryParse(grabbedValue, out value))
             {
-                foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
+
+                for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
                 {
-                    if (item.ColumnIndex == columRestricted)
-                        item.Value = grabbedValue;
-                    
+                    if (columRestricted == 1)
+                        dgViewSOV.SelectedCells[i].Value = value++;
+                    else
+                        dgViewSOV.SelectedCells[i].Value = value;
+
+                }
+                grabbedValue = null;
+            }
+            else if(!string.IsNullOrWhiteSpace(grabbedValue))
+            {
+                for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
+                {
+                    if (dgViewSOV.SelectedCells[i].ColumnIndex == columRestricted)
+                    dgViewSOV.SelectedCells[i].Value = grabbedValue;
                 }
             }
            
         }
 
-        public object grid
-        {
-            get
-            {
-                return dgViewSOV.DataSource;
-            }
-        }
+        //public object grid
+        //{
+        //    get
+        //    {
+        //        return dgViewSOV.DataSource;
+        //    }
+        //}
        
         public IList<string> SelectedCells
         {

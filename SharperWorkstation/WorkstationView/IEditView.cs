@@ -5,7 +5,7 @@ namespace SharperWorkstation.WorkstationView
 {
     internal interface IEditView
     {
-        object grid { get; }
+        //object grid { get; }
 
         IList<string> SelectedCells { get;}
 
