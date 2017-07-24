@@ -11,20 +11,10 @@ namespace SharperWorkstation.WorkstationModels
     {
         string ControlNo { get; set; }
         string ErrorMessage { get; set; }
-
-        object Grid { get; set; }
-
-        
-       
+        DataTable Grid { get; set; }
+                      
         bool Connect();
+
         DataTable ReturnData(string query);
-
-
-
-
-
-
-
-
     }
 }

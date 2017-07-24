@@ -5,59 +5,70 @@ using System.Text;
 using System.Threading.Tasks;
 using SharperWorkstation.WorkstationModels;
 using System.Windows.Forms;
+<<<<<<< HEAD:SharperWorkstation/SharperWorkstation/WorkstationPresenter/SearchPresenter.cs
 using SharperWorkstation.WorkstationView;
 
 namespace SharperWorkstation.WorkstationPresenter
+=======
+using OfficeOpenXml;
+using System.IO;
+using System.Data;
+
+namespace WindowsFormsApplication1.LocationPresenter
+>>>>>>> 2b584f66ebbb02f058fd2005774f8c41c5f1e45b:WindowsFormsApplication1/WindowsFormsApplication1/LocationPresenter/Presenter.cs
 {
     public class SearchPresenter
     {
+<<<<<<< HEAD:SharperWorkstation/SharperWorkstation/WorkstationPresenter/SearchPresenter.cs
         private readonly ISearchModel model;
         private readonly ISearchView view;
         
         
         public SearchPresenter(ISearchModel model, ISearchView view)
+=======
+        // Class variables for the model and view interfaces - JM
+        private readonly IModel model;
+        private readonly IView view;
+
+        // Ctor - JM
+        public Presenter(IModel model, IView view)
+>>>>>>> 2b584f66ebbb02f058fd2005774f8c41c5f1e45b:WindowsFormsApplication1/WindowsFormsApplication1/LocationPresenter/Presenter.cs
         {
             this.model = model;
             this.view = view;
             EventListeners();
         }
-
+        
+        // Event listener ctor - JM
         private void EventListeners()
         {
-            view.onStateChanged += UpdateGrid;
+            view.OnStateChanged += UpdateGrid;
         }
 
+        /// <summary>
+        /// Based on input from the user, populates the DataGridView with the corresponding information from the ABBYY DB
+        /// </summary>
         private void UpdateGrid(object sender, EventArgs e)
         {
-            
+            // Set the control number that the user input from the view as the control number for the model - JM
             model.ControlNo = view.ControlNo;
-            
-            if(!string.IsNullOrWhiteSpace(model.ControlNo))
+
+            // If the string provided is not empty - JM
+            if (!string.IsNullOrWhiteSpace(model.ControlNo))
             {
+                // If the connection to the database was successful - JM
                 if (model.Connect())
                 {
+                    // Set the view DataGridView equal to the model DataGridView - JM
                     model.Grid = view.Grid;
-                    // view.Grid = model.ReturnData(string.Format("SELECT* FROM Acord140_Critical WHERE ControlNoIMS = '{0}'",model.ControlNo));
-                    view.Grid = model.ReturnData(string.Format(" SELECT ControlNoIMS AS 'Control Number', LocationNo AS 'Location Number',    BuildingNo AS 'Building Number',    StreetAddressRaw as 'Raw Street Address',    PhysicalBuildingNumber as 'Physical Building Number',    SinglePhysBuildingNumber as 'Single Physical Building Number',    Street1 as 'Street 1',    Street2 as 'Street 2',    City,    Acord140_Critical.State,    Zip,    County,	Building_Value as 'Building Value',	Business_Personal_Property as 'Business Personal Property',	Business_Income as 'Business Income',	Misc_Real_Property as 'Misc Real Property',    BldgDescription as 'Building Description',    Units as '# Units',    ConstrTypes.ConstructionType as 'Construction Type',    DistToFireHydrant as 'Distance to Fire Hydrant',    DistToFireStation as 'Distance to Fire Station',    ProtectionCode as 'Protection Code',    Stories as '# Stories',    Basements as '# Basements',    YearBuilt as 'Year Built',    SqFootage as 'Square Footage',    WiringYear as 'Wiring Year',    PlumbingYear as 'Plumbing Year',    RoofingYear as 'Roofing Year',    HeatingYear as 'Heating Year',    BurgAlarm.AlarmType as 'Burglar Alarm Type',    FireAlarm.AlarmType as 'Fire Alarm Type',    SprinkAlarm.SprinklerAlarmType as 'Sprinkler Alarm Type',    WetDry.SprinklerWetDry as 'Sprinkler Wet/Dry',    SprinkExtent.SprinklerExtent as 'Sprinkler Extent',    DateCreated as 'Date Created'from    Acord140_Critical   inner join ConstructionTypes as ConstrTypes on ConstrTypes.ConstructionTypeID = Acord140_Critical.ConstructionTypeID   inner join AlarmTypes as BurgAlarm on BurgAlarm.AlarmTypeID = Acord140_Critical.BurglarAlarmTypeID   inner join AlarmTypes as FireAlarm on FireAlarm.AlarmTypeID = Acord140_Critical.FireAlarmTypeID   inner join SprinklerAlarmType as SprinkAlarm on SprinkAlarm.SprinklerAlarmTypeID = Acord140_Critical.SprinklerAlarmTypeID   inner join SprinklerExtent as SprinkExtent on SprinkExtent.SprinklerExtentID = Acord140_Critical.SprinklerExtentID   inner join SprinklerWetDry as WetDry on WetDry.SprinklerWetDryID = Acord140_Critical.SprinklerWetDryID where   cast(ControlNoIMS as nvarchar(250)) like '%{0}%'",model.ControlNo.ToString()));
+                    // Have the model return the data from the database using the stored procedure - JM
+                    view.Grid = model.ReturnData($"exec Get140Data {model.ControlNo.ToString()}");
                 }
                 else
                 {
                     MessageBox.Show(model.ErrorMessage);
                 }
-                
-                
             }
         }
-
-        
-
-        
-
-      
-        
-
-        
-
-        
     }
 }
