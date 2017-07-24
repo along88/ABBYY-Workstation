@@ -13,40 +13,33 @@ namespace WindowsFormsApplication1.LocationModels
     {
         private string controlNo; 
         private string errorMessage;
-        //private SqlCommand command;
-        private object grid;
+        private DataTable grid;
+        private string connectionString = "Data Source=10.10.11.112;Initial Catalog=ABBYY_AppData;Integrated Security=False;User ID=svc-flexicap;Password=svcflex;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         public string ControlNo
         {
-            get{return controlNo;}
-            set{controlNo = value;}
+            get{ return controlNo; }
+            set{ controlNo = value; }
         }
         public string ErrorMessage
         {
-            get{return errorMessage;}
+            get { return errorMessage; }
             set { errorMessage = value; }
         }
 
-        public object Grid
+        public DataTable Grid
         {
-            get{ return grid; }
+            get { return grid; }
             set { grid = value; }
         }
-
-        private string connectionString = "Data Source=10.10.11.112;Initial Catalog=ABBYY_AppData;Integrated Security=False;User ID=svc-flexicap;Password=svcflex;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-
+            
         public bool Connect()
         {
             
-            SqlConnection sqlconnection = new SqlConnection(connectionString);
+           SqlConnection sqlconnection = new SqlConnection(connectionString);
            try
             {
                 sqlconnection.Open();
-                //string sqlQuery = string.Format("SELECT * FROM Acord140_Critical inner join PremisesInformation on Acord140_Critical.Acord140_CriticalID = PremisesInformation.Acord140_CriticalID WHERE ControlNoIMS = '{0}'", controlNo);
-                //command = new SqlCommand(sqlQuery, sqlconnection);
-                //command.ExecuteNonQuery();
-                //command.Dispose();
-                //grid = ReturnData(sqlQuery);
                 sqlconnection.Close();
                 return true;
             }
@@ -60,7 +53,6 @@ namespace WindowsFormsApplication1.LocationModels
 
         public DataTable ReturnData(string query)
         {
-            
 
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, conn);

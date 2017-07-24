@@ -11,9 +11,8 @@ namespace WindowsFormsApplication1.LocationView
     public interface IView
     {
         string ControlNo { get; set; }
-        object Grid { get; set; }
-
-        event EventHandler<EventArgs> onStateChanged;
-        
+        DataTable Grid { get; set; }
+       
+        event EventHandler<EventArgs> OnStateChanged;      
     }
 }
