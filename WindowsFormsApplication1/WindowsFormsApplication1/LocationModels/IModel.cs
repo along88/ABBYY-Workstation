@@ -16,13 +16,5 @@ namespace WindowsFormsApplication1.LocationModels
         bool Connect();
 
         DataTable ReturnData(string query);
-
-
-
-
-
-
-
-
     }
 }

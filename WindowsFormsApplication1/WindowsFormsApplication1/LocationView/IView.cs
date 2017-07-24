@@ -12,9 +12,7 @@ namespace WindowsFormsApplication1.LocationView
     {
         string ControlNo { get; set; }
         DataTable Grid { get; set; }
-        LocationPresenter.Presenter Presenter { get; set; }
-
-        event EventHandler<EventArgs> OnStateChanged;
-        
+       
+        event EventHandler<EventArgs> OnStateChanged;      
     }
 }

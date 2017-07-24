@@ -18,7 +18,6 @@ namespace WindowsFormsApplication1.LocationPresenter
         private readonly IModel model;
         private readonly IView view;
 
-
         // Ctor - JM
         public Presenter(IModel model, IView view)
         {
@@ -58,61 +57,5 @@ namespace WindowsFormsApplication1.LocationPresenter
                 }
             }
         }
-
-        //public void ExportToExcel(DataGridView table)
-        //{
-        //    List<WorkstationRow> allRows = new List<WorkstationRow>();
-        //    WorkstationRow currentRow;
-        //    foreach (DataGridViewRow row in table.Rows)
-        //    {
-        //        currentRow = new WorkstationRow();
-        //        foreach (DataGridViewCell cell in row.Cells)
-        //        {
-        //            string currentCell = cell.Value.ToString();
-        //            currentRow.Add(currentCell);
-        //        }
-        //        allRows.Add(currentRow);
-        //    }
-        //    FileInfo excelFile = new FileInfo(filepath + $"Control Number - {view.ControlNo} ({today}).xlsx");
-        //    if (excelFile.Exists)
-        //    {
-        //        excelFile.Delete();
-        //        excelFile = new FileInfo(filepath + $"Control Number - {view.ControlNo} ({today}).xlsx");
-        //    }
-        //    using (ExcelPackage pkg = new ExcelPackage())
-        //    {
-        //        pkg.Workbook.Worksheets.Add("ABBYY Results");
-        //        ExcelWorksheet sheet = pkg.Workbook.Worksheets[1];
-        //        sheet.Name = "ABBYY Results";
-
-        //        for (int i = 0; i < headers.Length; i++)
-        //        {
-        //            sheet.Cells[1, i + 1].Value = headers[i];
-        //        }
-
-        //        int excelRowStart = 2;
-        //        foreach (var row in allRows)
-        //        {
-        //            for (int rowIndex = 0; rowIndex < row.Length(); rowIndex++)
-        //            {
-        //                sheet.Cells[excelRowStart, rowIndex + 1].Value = row.DataAtIndex(rowIndex);
-        //            }
-        //            excelRowStart++;
-        //        }
-        //        string excelBookName = $"Control Number - {view.ControlNo} ({today}).xlsx";
-        //        Byte[] sheetAsBinary = pkg.GetAsByteArray();
-        //        File.WriteAllBytes(Path.Combine(filepath, excelBookName), sheetAsBinary);
-        //    }
-        //}
-
-
-
-
-
-
-
-
-
-
     }
 }

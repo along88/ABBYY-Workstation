@@ -27,9 +27,8 @@ namespace WindowsFormsApplication1
             "Heating Year", "Burglar Alarm Type", "Fire Alarm Type", "Sprinkler Alarm Type",
             "Sprinkler Wet/Dry", "Sprinkler Extent"
         };
-        private string filepath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
-        string today = DateTime.Now.ToString("MM-dd-yyyy");
-
+        private readonly string filepath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
+        private readonly string today = DateTime.Now.ToString("MM-dd-yyyy");
 
         public SharperWorkstation()
         {
@@ -54,8 +53,6 @@ namespace WindowsFormsApplication1
             get;
             set;
         }
-
-        public LocationPresenter.Presenter Presenter { get; set; }
 
         public event EventHandler<EventArgs> OnStateChanged;
 
@@ -149,6 +146,9 @@ namespace WindowsFormsApplication1
                 Byte[] sheetAsBinary = pkg.GetAsByteArray();
                 File.WriteAllBytes(Path.Combine(filepath, excelBookName), sheetAsBinary);
             }
+
+
+            //Export();
 
             // This method can iterate through all cells in a row, store them in an "object", and display them
             //private void BtnExport_MouseClick(object sender, MouseEventArgs e)
