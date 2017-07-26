@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharperWorkstation.WorkstationModels;
+using System.Windows.Forms;
 
 namespace SharperWorkstation.WorkstationPresenter
 {
@@ -18,20 +19,6 @@ namespace SharperWorkstation.WorkstationPresenter
             this.editModel = model;
             this.editView = view;
         }
-        private void EventListeners()
-        {
-            editView.onStateChanged += UpdateCells;
-        }
-
-
-        private void UpdateCells(object sender, EventArgs e)
-        {
-            
-
-            if(editModel.selectedCells != null)
-            {
-                editModel.selectedCells = editView.SelectedCells;
-            }
-        }
+       
     }
 }

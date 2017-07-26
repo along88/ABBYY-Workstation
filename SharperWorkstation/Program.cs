@@ -17,9 +17,12 @@ namespace SharperWorkstation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ISearchModel model = new SearchModel();
-            ISearchView view = new SharperWorkstation();
+            ISearchView view = new SearchForm();
+
+            
             SearchPresenter presenter = new SearchPresenter(model, view);
-            Application.Run(view as SharperWorkstation);
+            
+            Application.Run(view as SearchForm);
         }
     }
 }

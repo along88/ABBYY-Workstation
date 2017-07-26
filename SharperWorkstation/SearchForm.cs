@@ -1,14 +1,16 @@
 ﻿using SharperWorkstation;
+using SharperWorkstation.WorkstationModels;
+using SharperWorkstation.WorkstationPresenter;
 using SharperWorkstation.WorkstationView;
 using System;
 using System.Windows.Forms;
 
 namespace SharperWorkstation
 {
-    public partial class SharperWorkstation : CustomForm, ISearchView
+    public partial class SearchForm : CustomForm, ISearchView
     {
         bool isActive;
-        public SharperWorkstation()
+        public SearchForm()
         {
             InitializeComponent();
             activeForms.Add(this);
@@ -55,6 +57,10 @@ namespace SharperWorkstation
         {
             isActive = false;
             activeForms.Remove(this);
+            //IEditModel editModel = new EditModel();
+            //IEditView editView = new EditForm();
+            //EditPresenter editPresenter = new EditPresenter(editModel, editView);
+            ControlNum = ControlNo;
             EditForm editForm = new EditForm();
             editForm.Visible = true;
         }

@@ -37,9 +37,9 @@
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(65, 23);
             this.backBtn.TabIndex = 0;
-            this.backBtn.Text = "Back";
+            this.backBtn.Text = "Export View";
             this.backBtn.UseVisualStyleBackColor = true;
-            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            this.backBtn.Click += new System.EventHandler(this.ExportBtn_Click);
             // 
             // EditForm
             // 

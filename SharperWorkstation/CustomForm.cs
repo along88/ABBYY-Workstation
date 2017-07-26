@@ -12,10 +12,15 @@ namespace SharperWorkstation
         protected static System.Windows.Forms.DataGridView dgViewSOV = new System.Windows.Forms.DataGridView();
 
         protected static List<Form> activeForms = new List<Form>();
+        public static string ControlNum
+        {
+            get;
+            set;
+        }
         public CustomForm( ) : base()
         {
-            
-           
+            dgvErrorHandler += view_DataError;
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 355);
@@ -28,6 +33,20 @@ namespace SharperWorkstation
             dgViewSOV.TabIndex = 0;
             this.Controls.Add(dgViewSOV);
             ((System.ComponentModel.ISupportInitialize)(dgViewSOV)).EndInit();
+           
         }
+
+        void view_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+             object value = dgViewSOV.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                if (!((DataGridViewComboBoxColumn)dgViewSOV.Columns[e.ColumnIndex]).Items.Contains(value))
+                {
+                    ((DataGridViewComboBoxColumn)dgViewSOV.Columns[e.ColumnIndex]).Items.Add(value);
+                    e.ThrowException = false;
+                }
+            
+
+        }
+        DataGridViewDataErrorEventHandler dgvErrorHandler;
     }
 }
