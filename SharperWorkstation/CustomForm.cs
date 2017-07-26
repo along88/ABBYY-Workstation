@@ -27,10 +27,13 @@ namespace SharperWorkstation
 
             //DataGrid View
             dgViewSOV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgViewSOV.Location = new System.Drawing.Point(0, 38);
+            dgViewSOV.Location = new System.Drawing.Point(0, 40);
             dgViewSOV.Name = "dgViewSOV";
-            dgViewSOV.Size = new System.Drawing.Size(719, 318);
+            dgViewSOV.Size = new System.Drawing.Size(719, 300);
             dgViewSOV.TabIndex = 0;
+            dgViewSOV.Anchor = (AnchorStyles.Right | AnchorStyles.Left );
+            dgViewSOV.Anchor = (this.Anchor | AnchorStyles.Right | AnchorStyles.Left);
+            dgViewSOV.Top = 50;
             this.Controls.Add(dgViewSOV);
             ((System.ComponentModel.ISupportInitialize)(dgViewSOV)).EndInit();
            
