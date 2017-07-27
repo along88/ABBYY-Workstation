@@ -9,12 +9,13 @@ namespace SharperWorkstation
 {
     public partial class SearchForm : CustomForm, ISearchView
     {
-        bool isActive;
+        
         public SearchForm()
         {
+            this.Controls.Add(dgViewSOV);
             InitializeComponent();
-            activeForms.Add(this);
             
+
 
         }
 
@@ -38,7 +39,9 @@ namespace SharperWorkstation
             set;
         }
 
+        public event EventHandler<EventArgs> EditClicked;
         public event EventHandler<EventArgs> onStateChanged;
+        public event EventHandler<EventArgs> onFormLoad;
 
         private void txtControlNo_TextChanged(object sender , EventArgs e)
         {
@@ -55,14 +58,15 @@ namespace SharperWorkstation
 
         private void Editbtn_Click(object sender, EventArgs e)
         {
-            isActive = false;
-            activeForms.Remove(this);
-            //IEditModel editModel = new EditModel();
-            //IEditView editView = new EditForm();
-            //EditPresenter editPresenter = new EditPresenter(editModel, editView);
+            EditClicked(this, e);
+            this.Controls.Remove(dgViewSOV);
             ControlNum = ControlNo;
-            EditForm editForm = new EditForm();
-            editForm.Visible = true;
+            onFormLoad(this, e);
+            for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+            {
+                dgViewSOV.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
         }
     }
 }

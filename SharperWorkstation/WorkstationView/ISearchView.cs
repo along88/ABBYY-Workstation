@@ -12,8 +12,11 @@ namespace SharperWorkstation.WorkstationView
     {
         string ControlNo { get; set; }
         object Grid { get; set; }
+        event EventHandler<EventArgs> EditClicked;
 
         event EventHandler<EventArgs> onStateChanged;
-        
+
+        event EventHandler<EventArgs> onFormLoad;
+
     }
 }

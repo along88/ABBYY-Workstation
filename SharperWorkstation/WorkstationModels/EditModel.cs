@@ -32,8 +32,8 @@ namespace SharperWorkstation.WorkstationModels
 
         public string ControlNo
         {
-            get { return controlNo; }
-            set { controlNo = value; }
+            get;
+            set;
         }
 
         public string ErrorMessage
@@ -51,7 +51,7 @@ namespace SharperWorkstation.WorkstationModels
 
         private string connectionString = "Data Source=10.10.11.112;Initial Catalog=ABBYY_AppData;Integrated Security=False;User ID=svc-flexicap;Password=svcflex;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private string errorMessage;
-        private string controlNo;
+        
 
         public bool Connect()
         {
@@ -76,9 +76,24 @@ namespace SharperWorkstation.WorkstationModels
 
         }
 
-        public DataTable UpdateData()
+        public DataTable LoadGrid(string query)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = command;
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            adapter.Fill(table);
+            return table;
+        }
+
+        public DataTable ExportGrid()
+        {
+
+            DataTable table = new DataTable();
+            table = (DataTable)Grid;
+            return table;
         }
 
     }

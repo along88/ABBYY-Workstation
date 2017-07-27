@@ -14,11 +14,48 @@ namespace SharperWorkstation.WorkstationPresenter
         private readonly IEditModel editModel;
         private readonly IEditView editView;
 
-        public EditPresenter(IEditModel model, IEditView view)
+        public EditPresenter()
         {
-            this.editModel = model;
-            this.editView = view;
+            editModel = new EditModel();
+            editView = new EditForm();
+            PopulateGrid();
+            editView.onExport += onExport;
+
+
+
         }
-       
+
+       private  void PopulateGrid()
+        {
+            editModel.ControlNo = editView.ControlNo;
+            if (!string.IsNullOrWhiteSpace(editModel.ControlNo))
+            {
+                if (editModel.Connect())
+                {
+                    editModel.Grid = editView.Grid;
+                    editView.Grid = editModel.LoadGrid(string.Format("exec Get140EditData {0} ", editModel.ControlNo.ToString()));
+                }
+                else
+                {
+                    MessageBox.Show(editModel.ErrorMessage);
+                }
+
+
+            }
+
+
+        }
+
+        private void onExport(object sender, EventArgs e)
+        {
+            editModel.Grid = editView.Grid;
+            editView.Grid = editModel.ExportGrid();
+        }
+        
+        
+
+        
+
+
     }
 }

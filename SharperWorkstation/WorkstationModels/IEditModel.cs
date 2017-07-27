@@ -9,10 +9,13 @@ namespace SharperWorkstation.WorkstationModels
 {
     interface IEditModel
     {
+        string ControlNo { get; set; }
         IList<string> selectedCells { get; set; }
         object Grid { get; set; }
         string ErrorMessage { get; set; }
 
-        DataTable UpdateData();
+        bool Connect();
+        DataTable LoadGrid(string query);
+        DataTable ExportGrid();
     }
 }

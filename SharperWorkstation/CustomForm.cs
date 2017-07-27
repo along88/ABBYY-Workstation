@@ -11,7 +11,7 @@ namespace SharperWorkstation
     {
         protected static System.Windows.Forms.DataGridView dgViewSOV = new System.Windows.Forms.DataGridView();
 
-        protected static List<Form> activeForms = new List<Form>();
+        
         public static string ControlNum
         {
             get;
@@ -20,7 +20,7 @@ namespace SharperWorkstation
         public CustomForm( ) : base()
         {
             dgvErrorHandler += view_DataError;
-
+            onFormLoad += LoadForm;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 355);
@@ -34,7 +34,7 @@ namespace SharperWorkstation
             dgViewSOV.Anchor = (AnchorStyles.Right | AnchorStyles.Left);
             dgViewSOV.Anchor = (this.Anchor | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom);
             dgViewSOV.Top = 50;
-            this.Controls.Add(dgViewSOV);
+            //this.Controls.Add(dgViewSOV);
             ((System.ComponentModel.ISupportInitialize)(dgViewSOV)).EndInit();
            
         }
@@ -50,6 +50,11 @@ namespace SharperWorkstation
             
 
         }
+        void LoadForm(object sender, EventArgs e)
+        {
+
+        }
         DataGridViewDataErrorEventHandler dgvErrorHandler;
+        event EventHandler onFormLoad;
     }
 }

@@ -27,3 +27,4 @@ C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\Sharper
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.csproj.GenerateResource.Cache
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.exe
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.pdb
+C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.csprojResolveAssemblyReference.cache

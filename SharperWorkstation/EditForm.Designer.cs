@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.backBtn = new System.Windows.Forms.Button();
+            this.controlNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backBtn
@@ -50,11 +51,21 @@
             this.Name = "EditForm";
             this.Text = "Sharper Workstation";
             this.ResumeLayout(false);
-         }
+            // controlNumberLabel
+            // 
+            this.controlNumberLabel.AutoSize = true;
+            this.controlNumberLabel.Location = new System.Drawing.Point(188, 15);
+            this.controlNumberLabel.Name = "controlNumberLabel";
+            this.controlNumberLabel.Size = new System.Drawing.Size(83, 13);
+            this.controlNumberLabel.TabIndex = 7;
+            this.controlNumberLabel.Text = "Control Number:";
+            this.Controls.Add(this.controlNumberLabel);
+        }
 
         #endregion
 
         private System.Windows.Forms.Button backBtn;
-        
+        private System.Windows.Forms.Label controlNumberLabel;
+
     }
 }

@@ -14,7 +14,7 @@ using SharperWorkstation.WorkstationView;
 
 namespace SharperWorkstation
 {
-    public partial class ResultsForm : CustomForm, ISearchView
+    public partial class ResultsForm : CustomForm
     {
         private string[] headers =
         {
@@ -31,21 +31,17 @@ namespace SharperWorkstation
         private readonly string filepath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
         private readonly string today = DateTime.Now.ToString("MM-dd-yyyy");
      
-        public ResultsForm()
+        public ResultsForm(object grid)
         {
             
             InitializeComponent();
+            this.Grid = grid;
+            controlNumberLabel.Text += this.ControlNo.ToString();
+            //this.Controls.Add(dgViewSOV);
 
-            
+
         }
 
-        
-
-        public Panel EditPanel
-        {
-            get;
-            set;
-        }
 
         public string ControlNo
         {
@@ -56,23 +52,13 @@ namespace SharperWorkstation
 
         public object Grid
         {
-            get { return dgViewSOV.DataSource; }
-            set { dgViewSOV.DataSource = value; }
+            get;
+            set;
         }
 
-       
-        public event EventHandler<EventArgs> onStateChanged;
+    
 
-        private void TxtControlNo_TextChanged(object sender, EventArgs e)
-        {
-
-            TextBox txtBox = sender as TextBox;
-            if (!string.IsNullOrWhiteSpace(txtBox.Text))
-            {
-                onStateChanged(this, e);
-            }
-
-        }
+        
         private void BtnExport_MouseClick(object sender, MouseEventArgs e)
         {
             List<WorkstationRow> allRows = new List<WorkstationRow>();
@@ -82,11 +68,18 @@ namespace SharperWorkstation
                 currentRow = new WorkstationRow();
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (cell.Value != null)
+                    if (dgViewSOV.Columns[cell.ColumnIndex].HeaderText == "Raw Street Address" || dgViewSOV.Columns[cell.ColumnIndex].HeaderText == ("Construction Type Raw"))
                     {
+                        continue;
+                    }
+                        if (cell.Value != null)
+                    {
+
                         string currentCell = cell.Value.ToString();
                         currentRow.Add(currentCell);
+
                     }
+                
                 }
                 allRows.Add(currentRow);
             }
@@ -120,7 +113,7 @@ namespace SharperWorkstation
                 Byte[] sheetAsBinary = pkg.GetAsByteArray();
                 File.WriteAllBytes(Path.Combine(filepath, excelBookName), sheetAsBinary);
             }
-
+            MessageBox.Show("Success! Submission exported to Desktop!");
         }
     }
 }

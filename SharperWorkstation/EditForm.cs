@@ -39,9 +39,16 @@ namespace SharperWorkstation
         private string grabbedValue;
         private int columRestricted;
         private int value;
+        
 
-        private object grid;
-        public object Grid { get; set; }
+        public event EventHandler<EventArgs> LoadEditForm;
+        public event EventHandler<EventArgs> onExport;
+
+        public object Grid
+        {
+            get { return dgViewSOV.DataSource; }
+            set { dgViewSOV.DataSource = value; }
+        }
         public IList<string> SelectedCells
         {
             get
@@ -59,31 +66,55 @@ namespace SharperWorkstation
             set {;}
         }
 
+        public string ControlNo
+        {
+            get
+            {
+                return ControlNum;
+            }
+
+            set
+            {
+                ControlNum = value;
+            }
+        }
+
         public EditForm()
         {
-            defaultColor = dgViewSOV.Columns[0].DefaultCellStyle.ForeColor;
+            this.Controls.Add(dgViewSOV);
+            
+            // defaultColor = dgViewSOV.Columns[0].DefaultCellStyle.ForeColor;
             InitializeComponent();
-            for (int i = 0; i < dgViewSOV.Columns.Count; i++)
-            {
-                dgViewSOV.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-            activeForms.Add(this);
+            //activeForms.Add(this);
             dgViewSOV.MouseUp += RightClick;
             dgViewSOV.KeyUp += KeyBoardShortCuts;
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
             dgViewSOV.ColumnHeaderMouseClick += FreezeColumnHeader;
-            
+            this.Show();
+            controlNumberLabel.Text += this.ControlNo.ToString();
+
+        }
+
+        private void loadingform(object sender, EventArgs e)
+        {
+            LoadEditForm(this, e);
         }
         private void ExportBtn_Click(object sender, EventArgs e)
         {
             //will probably want to provide a datatable for the export btn to work with
             //the editform will make a copy of its current datagridview into a data table
             //the export will consume that data table and display it into its own datagridview
-            activeForms.Remove(this);
-            ResultsForm exportForm = new ResultsForm();
+            //activeForms.Remove(this);
+           
+            dgViewSOV.Columns[2].Visible = false;
+            dgViewSOV.Columns[23].Visible = false;
+            
+            onExport(this, e);
+            ResultsForm exportForm = new ResultsForm(Grid);
             exportForm.Visible = true;
-            activeForms.Remove(this);
+           
+            //activeForms.Remove(this);
         }
         /// <summary>
         /// Checks for user keyboard shortcuts and presses against a selected cell ie. ctrl+v or Delete
@@ -140,21 +171,26 @@ namespace SharperWorkstation
         }
         private void FreezeColumnHeader(object sender, DataGridViewCellMouseEventArgs e)
         {
-
-
-
+            
             if (dgViewSOV.Columns[e.ColumnIndex].Frozen)
             {
                 for (int i = 0; i < (e.ColumnIndex); i++)
                 {
                     dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = defaultColor;
+                    dgViewSOV.Columns[i].Width = 80;
                     dgViewSOV.Columns[i].Frozen = false;
+                   
+                    
                 }
             }
             else
             {
                 dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = Color.Yellow;
                 dgViewSOV.Columns[e.ColumnIndex].Frozen = true;
+                for (int i = 0; i < e.ColumnIndex; i++)
+                {
+                    dgViewSOV.Columns[i].Width = dgViewSOV.Columns[i].MinimumWidth;
+                }
             }
         }
         private void RightClick(object sender, MouseEventArgs e)
@@ -190,32 +226,40 @@ namespace SharperWorkstation
             {
                 dgViewSOV.SelectAll();
             }
-
         }
         private void ValueDropped(object sender, DataGridViewCellMouseEventArgs e)
         {
+            try
+            {
+                if (int.TryParse(grabbedValue, out value))
+                {
 
-            if (int.TryParse(grabbedValue, out value))
+                    for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
+                    {
+                        if (columRestricted == 0)
+                            dgViewSOV.SelectedCells[i].Value = value++;
+                        else
+                            dgViewSOV.SelectedCells[i].Value = value;
+
+                    }
+                    grabbedValue = null;
+                }
+                else if (!string.IsNullOrWhiteSpace(grabbedValue))
+                {
+                    for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
+                    {
+                        if (dgViewSOV.SelectedCells[i].ColumnIndex == columRestricted)
+                            dgViewSOV.SelectedCells[i].Value = grabbedValue;
+                    }
+                }
+
+            }
+            catch (Exception exception)
             {
 
-                for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
-                {
-                    if (columRestricted == 1)
-                        dgViewSOV.SelectedCells[i].Value = value++;
-                    else
-                        dgViewSOV.SelectedCells[i].Value = value;
-
-                }
-                grabbedValue = null;
+               MessageBox.Show(exception.Message);
             }
-            else if (!string.IsNullOrWhiteSpace(grabbedValue))
-            {
-                for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
-                {
-                    if (dgViewSOV.SelectedCells[i].ColumnIndex == columRestricted)
-                        dgViewSOV.SelectedCells[i].Value = grabbedValue;
-                }
-            }
+           
 
         }
 

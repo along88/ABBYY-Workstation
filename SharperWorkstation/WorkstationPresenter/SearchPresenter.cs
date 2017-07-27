@@ -13,21 +13,28 @@ namespace SharperWorkstation.WorkstationPresenter
     {
         private readonly ISearchModel model;
         private readonly ISearchView view;
+
+        private EditPresenter editPresenter;
+
         
         
         public SearchPresenter(ISearchModel model, ISearchView view)
         {
             this.model = model;
             this.view = view;
+            
             EventListeners();
         }
 
         private void EventListeners()
         {
             view.onStateChanged += UpdateGrid;
+            view.onFormLoad += LoadEditGrid;
+            view.EditClicked += ClearGrid;
         }
 
-       
+        
+
         private void UpdateGrid(object sender, EventArgs e)
         {
             
@@ -39,7 +46,7 @@ namespace SharperWorkstation.WorkstationPresenter
                 {
                     model.Grid = view.Grid;
                     // view.Grid = model.ReturnData(string.Format("SELECT* FROM Acord140_Critical WHERE ControlNoIMS = '{0}'",model.ControlNo));
-                    view.Grid = model.ReturnData(string.Format(" SELECT ControlNoIMS AS 'Control Number', LocationNo AS 'Location Number',    BuildingNo AS 'Building Number',    StreetAddressRaw as 'Raw Street Address',    PhysicalBuildingNumber as 'Physical Building Number',    SinglePhysBuildingNumber as 'Single Physical Building Number',    Street1 as 'Street 1',    Street2 as 'Street 2',    City,    Acord140_Critical.State,    Zip,    County,	Building_Value as 'Building Value',	Business_Personal_Property as 'Business Personal Property',	Business_Income as 'Business Income',	Misc_Real_Property as 'Misc Real Property',    BldgDescription as 'Building Description',    Units as '# Units',    ConstrTypes.ConstructionType as 'Construction Type',    DistToFireHydrant as 'Distance to Fire Hydrant',    DistToFireStation as 'Distance to Fire Station',    ProtectionCode as 'Protection Code',    Stories as '# Stories',    Basements as '# Basements',    YearBuilt as 'Year Built',    SqFootage as 'Square Footage',    WiringYear as 'Wiring Year',    PlumbingYear as 'Plumbing Year',    RoofingYear as 'Roofing Year',    HeatingYear as 'Heating Year',    BurgAlarm.AlarmType as 'Burglar Alarm Type',    FireAlarm.AlarmType as 'Fire Alarm Type',    SprinkAlarm.SprinklerAlarmType as 'Sprinkler Alarm Type',    WetDry.SprinklerWetDry as 'Sprinkler Wet/Dry',    SprinkExtent.SprinklerExtent as 'Sprinkler Extent',    DateCreated as 'Date Created'from    Acord140_Critical   inner join ConstructionTypes as ConstrTypes on ConstrTypes.ConstructionTypeID = Acord140_Critical.ConstructionTypeID   inner join AlarmTypes as BurgAlarm on BurgAlarm.AlarmTypeID = Acord140_Critical.BurglarAlarmTypeID   inner join AlarmTypes as FireAlarm on FireAlarm.AlarmTypeID = Acord140_Critical.FireAlarmTypeID   inner join SprinklerAlarmType as SprinkAlarm on SprinkAlarm.SprinklerAlarmTypeID = Acord140_Critical.SprinklerAlarmTypeID   inner join SprinklerExtent as SprinkExtent on SprinkExtent.SprinklerExtentID = Acord140_Critical.SprinklerExtentID   inner join SprinklerWetDry as WetDry on WetDry.SprinklerWetDryID = Acord140_Critical.SprinklerWetDryID where   cast(ControlNoIMS as nvarchar(250)) like '%{0}%'",model.ControlNo.ToString()));
+                    view.Grid = model.ReturnData(string.Format(" exec Get140LocationInfo {0}",model.ControlNo.ToString()));
                 }
                 else
                 {
@@ -50,6 +57,18 @@ namespace SharperWorkstation.WorkstationPresenter
             }
         }
 
+        private void LoadEditGrid(object sender, EventArgs e)
+        {
+            
+            editPresenter = new EditPresenter();
+            
+
+        }
+        private void ClearGrid(object sender, EventArgs e)
+        {
+            view.Grid = null;
+            model.Grid = null;
+        }
         
 
         
