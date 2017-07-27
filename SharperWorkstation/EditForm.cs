@@ -16,11 +16,32 @@ namespace SharperWorkstation
 {
     public partial class EditForm : CustomForm, IEditView
     {
-       
+
+        /// <summary>
+        /// I will refactor this editForm to have its own DatagridView.
+        /// I will copy much of the same pattern as the SearchForm
+        /// The datatable that the editModel will use will need to make sure that it
+        /// includes logic for the dropdown combo box for the construction type, wkfc occupancies, etc
+        /// I may have to undo the customForm as it no longer makes sense to have each form pass around
+        /// the same grid object. SearchForm has its own grid object with its own query
+        /// the EditForm will have its own grid object that pulls up essentially what the form looks like now
+        /// the goal is by doing it as a seperate concern I can have more free reign of how the columns and headers are presented
+        /// and behave per form.
+        /// Step 1. Populate the EditForms grid object with a query tailored for this editform
+        ///     1a. Get EditForm grid view to display the Construction Type Column as a comboBox
+        /// Step 2. Figure out how to move my logic from this EditForm.cs to the EditPresenter.cs
+        /// Step 3. 
+        /// Note: Will probably have to create object representation for each column
+   
+        /// </summary>
+
         private Color defaultColor;
         private string grabbedValue;
         private int columRestricted;
         private int value;
+
+        private object grid;
+        public object Grid { get; set; }
         public IList<string> SelectedCells
         {
             get
@@ -35,19 +56,20 @@ namespace SharperWorkstation
                 }
                 return selectedCells;
             }
+            set {;}
         }
 
         public EditForm()
         {
-           defaultColor = dgViewSOV.Columns[0].DefaultCellStyle.ForeColor;
+            defaultColor = dgViewSOV.Columns[0].DefaultCellStyle.ForeColor;
             InitializeComponent();
-           for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+            for (int i = 0; i < dgViewSOV.Columns.Count; i++)
             {
                 dgViewSOV.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
             activeForms.Add(this);
             dgViewSOV.MouseUp += RightClick;
-            dgViewSOV.KeyUp += PasteIntoSelectedCell;
+            dgViewSOV.KeyUp += KeyBoardShortCuts;
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
             dgViewSOV.ColumnHeaderMouseClick += FreezeColumnHeader;
@@ -55,26 +77,42 @@ namespace SharperWorkstation
         }
         private void ExportBtn_Click(object sender, EventArgs e)
         {
+            //will probably want to provide a datatable for the export btn to work with
+            //the editform will make a copy of its current datagridview into a data table
+            //the export will consume that data table and display it into its own datagridview
             activeForms.Remove(this);
             ResultsForm exportForm = new ResultsForm();
             exportForm.Visible = true;
             activeForms.Remove(this);
         }
-        private void PasteIntoSelectedCell(object sender, KeyEventArgs e)
+        /// <summary>
+        /// Checks for user keyboard shortcuts and presses against a selected cell ie. ctrl+v or Delete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyBoardShortCuts(object sender, KeyEventArgs e)
         {
            if ((e.Shift && e.KeyCode == Keys.Insert) || (e.Control && e.KeyCode == Keys.V))
-            {
-                IDataObject dataInClipboard = Clipboard.GetDataObject();
-                string stringInClipBoard = (string)dataInClipboard.GetData(DataFormats.Text);
-                if (dgViewSOV.SelectedCells != null)
-                    foreach (DataGridViewCell item in dgViewSOV.SelectedCells)
-                        item.Value = stringInClipBoard;
-            }
+                Paste(dgViewSOV.SelectedCells);
+           if ((e.KeyCode == Keys.Delete))
+                Delete(dgViewSOV.SelectedCells);
+        }
+        private void Delete(DataGridViewSelectedCellCollection SelectedCells)
+        {
+            if (SelectedCells != null)
+                foreach (DataGridViewCell cell in SelectedCells)
+                    cell.Value = null;
+        }
+        private void Paste(DataGridViewSelectedCellCollection SelectedCells)
+        {
+            IDataObject dataInClipboard = Clipboard.GetDataObject();
+            string stringInClipBoard = (string)dataInClipboard.GetData(DataFormats.Text);
+            if (SelectedCells != null)
+                foreach (DataGridViewCell cell in SelectedCells)
+                    cell.Value = stringInClipBoard;
         }
         private void ValueClickedHold(object sender, DataGridViewCellMouseEventArgs e)
         {
-
-             
             int c = e.ColumnIndex;
             int r = e.RowIndex;
             try
@@ -180,5 +218,7 @@ namespace SharperWorkstation
             }
 
         }
+
+        
     }
 }

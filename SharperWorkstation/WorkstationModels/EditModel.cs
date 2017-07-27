@@ -76,20 +76,9 @@ namespace SharperWorkstation.WorkstationModels
 
         }
 
-        public DataTable ReturnData(string query)
+        public DataTable UpdateData()
         {
-
-
-            SqlConnection conn = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(query, conn);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = command;
-
-            DataTable table = new DataTable();
-            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-            adapter.Fill(table);
-
-            return table;
+            throw new NotImplementedException();
         }
 
     }

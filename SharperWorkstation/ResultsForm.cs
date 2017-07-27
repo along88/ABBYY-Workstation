@@ -49,9 +49,9 @@ namespace SharperWorkstation
 
         public string ControlNo
         {
-            get { return txtControlNo.Text; }
+            get { return ControlNum; }
 
-            set { txtControlNo.Text = value; }
+            set { ControlNum = value; }
         }
 
         public object Grid

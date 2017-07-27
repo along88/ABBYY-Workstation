@@ -66,11 +66,9 @@ namespace SharperWorkstation.WorkstationModels
             SqlCommand command = new SqlCommand(query, conn);
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = command;
-
             DataTable table = new DataTable();
             table.Locale = System.Globalization.CultureInfo.InvariantCulture;
             adapter.Fill(table);
-
             return table;
         }
 

@@ -31,8 +31,8 @@ namespace SharperWorkstation
             dgViewSOV.Name = "dgViewSOV";
             dgViewSOV.Size = new System.Drawing.Size(719, 300);
             dgViewSOV.TabIndex = 0;
-            dgViewSOV.Anchor = (AnchorStyles.Right | AnchorStyles.Left );
-            dgViewSOV.Anchor = (this.Anchor | AnchorStyles.Right | AnchorStyles.Left);
+            dgViewSOV.Anchor = (AnchorStyles.Right | AnchorStyles.Left);
+            dgViewSOV.Anchor = (this.Anchor | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom);
             dgViewSOV.Top = 50;
             this.Controls.Add(dgViewSOV);
             ((System.ComponentModel.ISupportInitialize)(dgViewSOV)).EndInit();

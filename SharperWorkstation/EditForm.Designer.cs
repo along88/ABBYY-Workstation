@@ -50,11 +50,11 @@
             this.Name = "EditForm";
             this.Text = "Sharper Workstation";
             this.ResumeLayout(false);
-
-        }
+         }
 
         #endregion
 
         private System.Windows.Forms.Button backBtn;
+        
     }
 }
