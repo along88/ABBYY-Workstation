@@ -28,3 +28,5 @@ C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\Sharper
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.exe
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.pdb
 C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.csprojResolveAssemblyReference.cache
+C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\Interop.ScanStationAutomation.dll
+C:\Users\along\Documents\SharperWorkstation\SharperWorkstation\obj\Debug\SharperWorkstation.csproj.ResolveComReference.cache

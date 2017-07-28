@@ -12,6 +12,7 @@ using System.IO;
 using OfficeOpenXml;
 using System.Data.SqlClient;
 
+
 namespace SharperWorkstation
 {
     public partial class EditForm : CustomForm, IEditView
@@ -32,9 +33,9 @@ namespace SharperWorkstation
         /// Step 2. Figure out how to move my logic from this EditForm.cs to the EditPresenter.cs
         /// Step 3. 
         /// Note: Will probably have to create object representation for each column
-   
-        /// </summary>
 
+        /// </summary>
+       
         private Color defaultColor;
         private string grabbedValue;
         private int columRestricted;
@@ -82,16 +83,16 @@ namespace SharperWorkstation
         public EditForm()
         {
             this.Controls.Add(dgViewSOV);
-            
-            // defaultColor = dgViewSOV.Columns[0].DefaultCellStyle.ForeColor;
             InitializeComponent();
             //activeForms.Add(this);
             dgViewSOV.MouseUp += RightClick;
             dgViewSOV.KeyUp += KeyBoardShortCuts;
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
+            dgViewSOV.CellMouseClick += HighlightRow;
             dgViewSOV.ColumnHeaderMouseClick += FreezeColumnHeader;
             this.Show();
+            defaultColor = Color.Empty;
             controlNumberLabel.Text += this.ControlNo.ToString();
 
         }
@@ -179,8 +180,10 @@ namespace SharperWorkstation
                     dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = defaultColor;
                     dgViewSOV.Columns[i].Width = 80;
                     dgViewSOV.Columns[i].Frozen = false;
-                   
-                    
+                    dgViewSOV.Columns[i].DefaultCellStyle.BackColor = defaultColor;
+
+
+
                 }
             }
             else
@@ -263,6 +266,24 @@ namespace SharperWorkstation
 
         }
 
+        private void HighlightRow(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //MessageBox.Show(dgViewSOV[0, e.RowIndex].Style.BackColor.ToString());
+            if (e.RowIndex != -1)
+            {
+
+                for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+                {
+                    if(dgViewSOV[i,e.RowIndex].Style.BackColor == defaultColor)
+                        dgViewSOV[i, e.RowIndex].Style.BackColor = Color.GreenYellow;
+                    else
+                        dgViewSOV[i, e.RowIndex].Style.BackColor = defaultColor;
+                }
+                dgViewSOV.ClearSelection();
+
+
+            }
+        }
         
     }
 }
