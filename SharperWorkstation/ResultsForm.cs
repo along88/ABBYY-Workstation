@@ -33,13 +33,9 @@ namespace SharperWorkstation
      
         public ResultsForm(object grid)
         {
-            
             InitializeComponent();
             this.Grid = grid;
             controlNumberLabel.Text += this.ControlNo.ToString();
-            //this.Controls.Add(dgViewSOV);
-
-
         }
 
 
@@ -72,14 +68,11 @@ namespace SharperWorkstation
                     {
                         continue;
                     }
-                        if (cell.Value != null)
+                    if (cell.Value != null)
                     {
-
                         string currentCell = cell.Value.ToString();
                         currentRow.Add(currentCell);
-
                     }
-                
                 }
                 allRows.Add(currentRow);
             }

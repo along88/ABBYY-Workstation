@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,7 +18,6 @@
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -61,11 +59,8 @@
             this.controlNumberLabel.Text = "Control Number:";
             this.Controls.Add(this.controlNumberLabel);
         }
-
         #endregion
-
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label controlNumberLabel;
-
     }
 }

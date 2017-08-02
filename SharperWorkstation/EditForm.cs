@@ -30,7 +30,7 @@ namespace SharperWorkstation
         /// and behave per form.
         /// Step 1. Populate the EditForms grid object with a query tailored for this editform
         ///     1a. Get EditForm grid view to display the Construction Type Column as a comboBox
-        /// Step 2. Figure out how to move my logic from this EditForm.cs to the EditPresenter.cs
+        /// Step 2. Figure out how to move functions and behavior from this EditForm.cs to the EditPresenter.cs
         /// Step 3. 
         /// Note: Will probably have to create object representation for each column
 
@@ -107,15 +107,12 @@ namespace SharperWorkstation
             //the editform will make a copy of its current datagridview into a data table
             //the export will consume that data table and display it into its own datagridview
             //activeForms.Remove(this);
-           
             dgViewSOV.Columns[2].Visible = false;
             dgViewSOV.Columns[23].Visible = false;
-            
             onExport(this, e);
             ResultsForm exportForm = new ResultsForm(Grid);
             exportForm.Visible = true;
-           
-            //activeForms.Remove(this);
+           //activeForms.Remove(this);
         }
         /// <summary>
         /// Checks for user keyboard shortcuts and presses against a selected cell ie. ctrl+v or Delete
@@ -151,7 +148,6 @@ namespace SharperWorkstation
             {
                 grabbedValue = dgViewSOV.Rows[r].Cells[c].Value.ToString();
                     columRestricted = c;
-
             }
             catch(Exception exception)
             {
@@ -172,28 +168,26 @@ namespace SharperWorkstation
         }
         private void FreezeColumnHeader(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
             if (dgViewSOV.Columns[e.ColumnIndex].Frozen)
-            {
                 for (int i = 0; i < (e.ColumnIndex); i++)
                 {
                     dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = defaultColor;
                     dgViewSOV.Columns[i].Width = 80;
                     dgViewSOV.Columns[i].Frozen = false;
                     dgViewSOV.Columns[i].DefaultCellStyle.BackColor = defaultColor;
-
-
-
                 }
+            else if(e.ColumnIndex > 4)
+            {
+                dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                dgViewSOV.Columns[e.ColumnIndex].Frozen = true;
+                dgViewSOV.ScrollBars = ScrollBars.Both;
+                for (int i = 0; i < e.ColumnIndex; i++)
+                    dgViewSOV.Columns[i].Width = dgViewSOV.Columns[i].MinimumWidth;
             }
             else
             {
                 dgViewSOV.Columns[e.ColumnIndex].DefaultCellStyle.BackColor = Color.Yellow;
                 dgViewSOV.Columns[e.ColumnIndex].Frozen = true;
-                for (int i = 0; i < e.ColumnIndex; i++)
-                {
-                    dgViewSOV.Columns[i].Width = dgViewSOV.Columns[i].MinimumWidth;
-                }
             }
         }
         private void RightClick(object sender, MouseEventArgs e)
@@ -206,8 +200,6 @@ namespace SharperWorkstation
                 editMenu.Items.Add("Paste").Name = "Paste";
                 editMenu.Show(dgViewSOV, e.X, e.Y);
                 editMenu.ItemClicked += new ToolStripItemClickedEventHandler(menuItemClicked);
-
-
             }
         }
         private void menuItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -223,12 +215,9 @@ namespace SharperWorkstation
                 case "Paste":
                     dgViewSOV.CurrentCell.Value = Clipboard.GetText();
                     break;
-
             }
             if (e.ClickedItem.Name.Equals("SelectAll"))
-            {
                 dgViewSOV.SelectAll();
-            }
         }
         private void ValueDropped(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -236,54 +225,49 @@ namespace SharperWorkstation
             {
                 if (int.TryParse(grabbedValue, out value))
                 {
-
                     for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
                     {
                         if (columRestricted == 0)
                             dgViewSOV.SelectedCells[i].Value = value++;
                         else
                             dgViewSOV.SelectedCells[i].Value = value;
-
                     }
                     grabbedValue = null;
                 }
                 else if (!string.IsNullOrWhiteSpace(grabbedValue))
-                {
                     for (int i = (dgViewSOV.SelectedCells.Count - 1); i >= 0; i--)
-                    {
                         if (dgViewSOV.SelectedCells[i].ColumnIndex == columRestricted)
                             dgViewSOV.SelectedCells[i].Value = grabbedValue;
-                    }
-                }
-
             }
             catch (Exception exception)
             {
-
-               MessageBox.Show(exception.Message);
+                MessageBox.Show(exception.Message);
             }
-           
-
         }
-
         private void HighlightRow(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //MessageBox.Show(dgViewSOV[0, e.RowIndex].Style.BackColor.ToString());
-            if (e.RowIndex != -1)
+            //MessageBox.Show(e.ColumnIndex.ToString());
+            try
             {
-
-                for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+                if (e.ColumnIndex == -1)
                 {
-                    if(dgViewSOV[i,e.RowIndex].Style.BackColor == defaultColor)
-                        dgViewSOV[i, e.RowIndex].Style.BackColor = Color.GreenYellow;
-                    else
-                        dgViewSOV[i, e.RowIndex].Style.BackColor = defaultColor;
+                    for (int i = 0; i < dgViewSOV.Columns.Count; i++)
+                    {
+                        if (dgViewSOV[i, e.RowIndex].Style.BackColor == defaultColor)
+                            dgViewSOV[i, e.RowIndex].Style.BackColor = Color.GreenYellow;
+                        else
+                            dgViewSOV[i, e.RowIndex].Style.BackColor = defaultColor;
+                    }
+                    dgViewSOV.ClearSelection();
                 }
+            }
+            catch (Exception)
+            {
+                dgViewSOV.SelectAll();
+                for (int i = 0; i < dgViewSOV.SelectedCells.Count; i++)
+                    dgViewSOV.SelectedCells[i].Style.BackColor = Color.GreenYellow;
                 dgViewSOV.ClearSelection();
-
-
             }
         }
-        
     }
 }
