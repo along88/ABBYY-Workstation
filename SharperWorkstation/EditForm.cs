@@ -87,6 +87,8 @@ namespace SharperWorkstation
             //activeForms.Add(this);
             dgViewSOV.MouseUp += RightClick;
             dgViewSOV.KeyUp += KeyBoardShortCuts;
+            dgViewSOV.KeyDown += ShiftKey;
+            dgViewSOV.KeyUp += ShiftKey;
             dgViewSOV.CellMouseDown += ValueClickedHold;
             dgViewSOV.CellMouseUp += ValueDropped;
             dgViewSOV.CellMouseClick += HighlightRow;
@@ -244,12 +246,22 @@ namespace SharperWorkstation
                 MessageBox.Show(exception.Message);
             }
         }
+        private bool shiftHeld;
+        private void ShiftKey(object sender, KeyEventArgs key)
+        {
+            if (key.Shift)
+                shiftHeld = true;
+            else
+                shiftHeld = false;
+        }
         private void HighlightRow(object sender, DataGridViewCellMouseEventArgs e)
         {
+            
+            
             //MessageBox.Show(e.ColumnIndex.ToString());
             try
             {
-                if (e.ColumnIndex == -1)
+                if (e.ColumnIndex == -1 && shiftHeld)
                 {
                     for (int i = 0; i < dgViewSOV.Columns.Count; i++)
                     {
